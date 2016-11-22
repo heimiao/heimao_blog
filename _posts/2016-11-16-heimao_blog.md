@@ -1,7 +1,10 @@
 ---
-layout:default
-title:你好，黑猫。欢迎来到jekyll生成的博客
+
+layout: default
+title: "你好，jekyll"
+
 ---
+
 {{page.title}}
 我的第一篇文章内容展示如下
 

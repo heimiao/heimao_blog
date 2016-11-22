@@ -1,4 +1,10 @@
-# 本地搭建jekyll模版发布系统
+---
+
+layout: index
+title: "本地搭建jekyll模版发布系统"
+
+---
+
 ***  
 ***jekyl介绍**：jekyll只用 Markdown (或 Textile)、Liquid、HTML & CSS 就可以构建可部署的静态网站。
 
@@ -14,17 +20,17 @@
 
 >如下图我选择了64位的（PS：根据你自己的系统，判断安装所需版本）
 
-![img]("image/ruby.png")
+![img]({{site.url}}/image/ruby.png)
 
 >
 下载完之后，点击安装会出现如下界面 ,勾选第二个自动配置环境变量，要不然你用命令的时候会找不到ruby程序的。所以勾选上第二个噢噢 
 
-![img]("image/rubyinstall.png") 
+![img]({{site.url}}/image/rubyinstall.png) 
 
 >
 当安装完毕的时候打开命令控制台，如下图：
 
-![img]("image/ruby-cmd.png")
+![img]({{site.url}}image/ruby-cmd.png)
 >
 如果如下命令查看ruby版本，因为我装ruby是2.0以上的版本所以我在这里就不在单独安装RubyGems了，ruby2.0一下的好像就不再包含rubygems模块了。
 （PS:rubygems和node的npm差不多都是包管理）
@@ -33,7 +39,7 @@
 >
 测试是否安装成功：成功如下图所示
 
-![img]("image/ruby-scs.png")
+![img]({{site.url}}image/ruby-scs.png)
 
 ###第二步安装devkit
 >我先解释下为什么要安装devkit
@@ -41,11 +47,11 @@
 在使用RubyGems安装其他类库的的同时。有一些是保持C语言编写的代码的形式来发布的，它们需要通过使用“gcc”编译器等结合环境一起来编译，但在Windows上是不能用gcc来编译的。满足我的win系统的需求所以我们必须的安装devkit来填补win7的缺陷。
 >
 好了现在我们就开始安装吧
-[点击安装地址]("http://rubyinstaller.org/downloads/")
+[点击安装地址](http://rubyinstaller.org/downloads/)
 
 >如下图所示,我选择了DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe因为这个才符合我的64位操作系统要求
 
-![img]("image/devkit.png")
+![img]({{site.url}}image/devkit.png)
 
 > 下载完之后直接点击安装, 安装完成之后。需要通过我们的命令窗口进入到我们安装的目录下，输入两个命令：
 > 
@@ -53,15 +59,15 @@
 	ruby dk.rb install
 
  
-![img]("image/mulu-ml.png")
+![img]({{site.url}}image/mulu-ml.png)
 
 通过输出我们可以看出我们dk.rb.init是成功的，可是第二个命令安装报错了，说我们的config.xml找不ruby程序的配置项.所以我们打开我们的config.xml,配置下我们的ruby安装目录,如下图所示
 
-![img]("image/ruby-urls.png")
+![img]({{site.url}}image/ruby-urls.png)
 
 当我们配置好路径之后，再次运行安装dk.rb install命令会看到如下图所示：
 
-![img]("image/ruby-com-install.png")
+![img]({{site.url}}image/ruby-com-install.png)
 
 到这里我们可以说这两个在我的window下安装成功了。哈哈
 
@@ -99,7 +105,7 @@
 
 安装完成之后如下图所示 
 
-![img]("image/jekyll-install.png")
+![img]({{site.url}}image/jekyll-install.png)
 
 查看jekyll安装的版本可以执行一下命令
 	
@@ -122,14 +128,14 @@
 原本通过这个就可以妥妥的生成一个静态的网站，谁知道不是我预想的那样访问到，噼里啪啦的报错,整的你恶心，我就把我报错的解决办法以及报错的内容展示你们，以后也少走弯路了。
 
 当我输入**jekyll new heimao_blog**原本在我所在目录下生成一个**heimao_blog**的文件夹，可是命令控制台包错，如下图错：
-![img]("image/error_01.png")
+![img]({{site.url}}image/error_01.png)
 通过报错的情况来看是我没有安装叫bundler的依赖类库，所以我要再次安装下这个类库。安装命令如下：
 
 	gem install bundler
 
 安装完事之后你再次启动命令**jekyll serve**结果又是报错了，报错内容如下：
 
-![img]("image/error_02.png")
+![img]({{site.url}}image/error_02.png)
 
 通过这张图我们可以看到，我又缺少了一个叫**minima** 的类库。真“mini妈”啊小了就是藏的深啊。不一下子给我爆出来，我们继续安装这个**minima**的类库命令如下：
 	
@@ -137,14 +143,14 @@
 
 到这里心里想终于解决完了，好了继续运行我的服务命令**jekyll serve** 又TMD报错，这下我可怒了玩一个自建博客有TMD这么费劲吗报错如下图
 
-![img]("image/error_03.png")
+![img]({{site.url}}image/error_03.png)
 
 通过这个我们可以看到这4000端口被占用了，也就是没有权限我也是醉了。。。好吧我从新监听一个服务器端口号叫8000的命令如下
 	
 	gem install minima --port 8000
 
 我执行下完美运行，然后你可以访问http://localhost:8000网址效果如下
-![img]("image/show.png")
+![img]({{site.url}}image/show.png)
 
 呵呵今天就写到这里了，，，，，，尽管报了一路子错，但是我相信肯定有解决办法的，俗话说的好办法总比错误多呵呵。。。
 

@@ -1,1 +1,9 @@
-baseurl:/heimao_blog
+source:		.
+destination:    ./_site
+#plugins:	./_plugins
+layouts_dir:    ./_layouts
+host:		127.0.0.1
+port:		8080
+baseurl:	/
+url:		http://localhost:8080
+img_url:	/image
