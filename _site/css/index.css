@@ -5,13 +5,12 @@ body{
 	width:80%;
 	height:100px;
 	margin:0px auto;
-	padding:5px;
 	color:red; 
 	border-radius:20px;
 	box-shadow:2px 2px 35px 1px #000; 
  }
  .vui-content{
- 	width:75%;
+ 	width:80%;
  	margin:0px auto;
  	background:
  	box-shadow:2px 2px 5px 1px #000; 
