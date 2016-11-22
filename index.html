@@ -1,19 +1,237 @@
----
- title  : "我是主页"
----
 <!DOCTYPE html>
-<html> 
-	{% include header.html %}
-	<body>
-		<div class="cont">
-			<ul>
-				{% for post in site.posts %}
-					<li>
-						<a href="{{post.url}}">{{post.date|date_to_string}} {{post.title}}{{page.date}}</a>
-					</li>
-				{% endfor %}
-			</ul>
-		</div>
-		{% include footer.html %}
-	</body>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Heimao blog by heimiao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Heimao blog</h1>
+      <h2 class="project-tagline">黑猫博客</h2>
+      <a href="https://github.com/heimiao/heimao_blog" class="btn">View on GitHub</a>
+      <a href="https://github.com/heimiao/heimao_blog/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/heimiao/heimao_blog/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="本地搭建jekyll模版发布系统" class="anchor" href="#%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BAjekyll%E6%A8%A1%E7%89%88%E5%8F%91%E5%B8%83%E7%B3%BB%E7%BB%9F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>本地搭建jekyll模版发布系统</h1>
+
+<hr>
+
+<p><em>**jekyl介绍</em>*：jekyll只用 Markdown (或 Textile)、Liquid、HTML &amp; CSS 就可以构建可部署的静态网站。</p>
+
+<p><strong>前言</strong>：这几天看了下jekyll这个静态网页发布系统，由于不依赖后台所以我选择用他了，当然用他只是生成自己的一个简单的博客，所以不需要什么大的后台做支撑，当然如果你需要后台交互的话那就另说了，我想写一个自己的一本书，（书籍的生成也有其他的工程包比如gitbook）那就先拿jekyll模版发布引擎先说了，好了废话不多说，开始进入正题。</p>
+
+<p><strong>配置说明</strong>：我的当前系统环境是window7 64位操作系统，所以我只是在window7做了下jekyll的环境搭建</p>
+
+<h3>
+<a id="第一步安装ruby" class="anchor" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E5%AE%89%E8%A3%85ruby" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>第一步安装ruby</h3>
+
+<blockquote>
+<p>由于jekyll是依赖ruby开发的所以我们先把ruby安装一下，</p>
+
+<p>点击安装地址</p>
+
+<p>如下图我选择了64位的（PS：根据你自己的系统，判断安装所需版本）</p>
+</blockquote>
+
+<p><img src="%22image/ruby.png%22" alt="img"></p>
+
+<blockquote>
+<p>下载完之后，点击安装会出现如下界面 ,勾选第二个自动配置环境变量，要不然你用命令的时候会找不到ruby程序的。所以勾选上第二个噢噢 </p>
+</blockquote>
+
+<p><img src="%22image/rubyinstall.png%22" alt="img"> </p>
+
+<blockquote>
+<p>当安装完毕的时候打开命令控制台，如下图：</p>
+</blockquote>
+
+<p><img src="%22image/ruby-cmd.png%22" alt="img"></p>
+
+<blockquote>
+<p>如果如下命令查看ruby版本，因为我装ruby是2.0以上的版本所以我在这里就不在单独安装RubyGems了，ruby2.0一下的好像就不再包含rubygems模块了。
+（PS:rubygems和node的npm差不多都是包管理）</p>
+</blockquote>
+
+<pre><code> ruby -v
+</code></pre>
+
+<blockquote>
+<p>测试是否安装成功：成功如下图所示</p>
+</blockquote>
+
+<p><img src="%22image/ruby-scs.png%22" alt="img"></p>
+
+<h3>
+<a id="第二步安装devkit" class="anchor" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E5%AE%89%E8%A3%85devkit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>第二步安装devkit</h3>
+
+<blockquote>
+<p>我先解释下为什么要安装devkit</p>
+</blockquote>
+
+<p>在使用RubyGems安装其他类库的的同时。有一些是保持C语言编写的代码的形式来发布的，它们需要通过使用“gcc”编译器等结合环境一起来编译，但在Windows上是不能用gcc来编译的。满足我的win系统的需求所以我们必须的安装devkit来填补win7的缺陷。</p>
+
+<blockquote>
+<p>好了现在我们就开始安装吧
+点击安装地址</p>
+
+<p>如下图所示,我选择了DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe因为这个才符合我的64位操作系统要求</p>
+</blockquote>
+
+<p><img src="%22image/devkit.png%22" alt="img"></p>
+
+<blockquote>
+<p>下载完之后直接点击安装, 安装完成之后。需要通过我们的命令窗口进入到我们安装的目录下，输入两个命令：</p>
+
+<pre><code>ruby dk.rb init
+ruby dk.rb install
+</code></pre>
+</blockquote>
+
+<p><img src="%22image/mulu-ml.png%22" alt="img"></p>
+
+<p>通过输出我们可以看出我们dk.rb.init是成功的，可是第二个命令安装报错了，说我们的config.xml找不ruby程序的配置项.所以我们打开我们的config.xml,配置下我们的ruby安装目录,如下图所示</p>
+
+<p><img src="%22image/ruby-urls.png%22" alt="img"></p>
+
+<p>当我们配置好路径之后，再次运行安装dk.rb install命令会看到如下图所示：</p>
+
+<p><img src="%22image/ruby-com-install.png%22" alt="img"></p>
+
+<p>到这里我们可以说这两个在我的window下安装成功了。哈哈</p>
+
+<h3>
+<a id="第三步安装jekyll" class="anchor" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%AE%89%E8%A3%85jekyll" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>第三步安装jekyll</h3>
+
+<h4>
+<a id="1修改gem安装库的源" class="anchor" href="#1%E4%BF%AE%E6%94%B9gem%E5%AE%89%E8%A3%85%E5%BA%93%E7%9A%84%E6%BA%90" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.修改gem安装库的源</h4>
+
+<p>(PS:这部分只是为了下载jekyll而做的一写特殊准备工作，如果你的电脑可以翻墙可以忽略过去，直接看  <strong>2.gem命令安装jekyll</strong>)</p>
+
+<blockquote>
+<p>安装jekyll是通过gem命令安装的，由于我大天朝特殊的安全意识，所以我大天朝启动了长城牌安全防火墙。所以有部分的国外网站地址我们是访问不到的，以至于我们安装不上我们的jekyll。所以为了下载jekyll我们的需要修改安装源，gem默认安装的类库都是在<a href="http://rubygems.org/%E4%B8%8A%E5%AD%98%E6%94%BE%E7%9A%84%E3%80%82">http://rubygems.org/上存放的。</a>
+因为我只知道淘宝有个镜像，所以我想把gem安装类库的源改成淘宝镜像地址，这样我们安装jekyll就省事多了。</p>
+</blockquote>
+
+<p>为了快点，替换gem安装的类库源我就不做截图了，直接写命令了</p>
+
+<p>打开我们的命令窗口</p>
+
+<ul>
+<li>
+<p>先把gem安装类库的默认源<a href="http://rubygems.org/%E7%BB%99%E7%A7%BB%E9%99%A4%E6%8E%89">http://rubygems.org/给移除掉</a></p>
+
+<pre><code>gem sources --remove http://rubygems.org/
+</code></pre>
+</li>
+<li>
+<p>配置我们新的淘宝镜像地址源</p>
+
+<pre><code>gem sources -a http://ruby.taobao.org/
+</code></pre>
+</li>
+<li>
+<p>如果想查看是否切换了可以用以下命令查看我们当前gem下载类库源是哪</p>
+
+<pre><code>gem sources -l
+</code></pre>
+</li>
+</ul>
+
+<h4>
+<a id="2gem命令安装jekyll" class="anchor" href="#2gem%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85jekyll" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.gem命令安装jekyll</h4>
+
+<p>为了照顾小白我也是算是墨迹够了又是截图又是命令的。好了我也不抱怨了，还是规规矩矩的写下去吧。</p>
+
+<p>打开我们的命令窗口，执行一下命令安装我们的jekyll</p>
+
+<pre><code>gem intall jekyll
+</code></pre>
+
+<p>安装完成之后如下图所示 </p>
+
+<p><img src="%22image/jekyll-install.png%22" alt="img"></p>
+
+<p>查看jekyll安装的版本可以执行一下命令</p>
+
+<pre><code>jekyll -v
+</code></pre>
+
+<p>查看jeyll的所有命令</p>
+
+<pre><code>jekyll --help  
+jekyll -h
+</code></pre>
+
+<h3>
+<a id="第四步用jekyll发布静态网站" class="anchor" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%E7%94%A8jekyll%E5%8F%91%E5%B8%83%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>第四步用jekyll发布静态网站</h3>
+
+<p>其实生成静态网站直接看官网就行了，可是我为了保证小白一路顺风还是给你们生成一个exmple吧，毕竟都写到这里了，不妨完成一个demo。
+我们通过命令<strong>jekyll -h</strong>命令知道他有一个new 命令可以为我们创建一个简单静态的网站demo，</p>
+
+<p>打开我们的命令控制台输入以下命令：</p>
+
+<pre><code>jekyll new projectName
+</code></pre>
+
+<p>原本通过这个就可以妥妥的生成一个静态的网站，谁知道不是我预想的那样访问到，噼里啪啦的报错,整的你恶心，我就把我报错的解决办法以及报错的内容展示你们，以后也少走弯路了。</p>
+
+<p>当我输入<strong>jekyll new heimao_blog</strong>原本在我所在目录下生成一个<strong>heimao_blog</strong>的文件夹，可是命令控制台包错，如下图错：
+<img src="%22image/error_01.png%22" alt="img">
+通过报错的情况来看是我没有安装叫bundler的依赖类库，所以我要再次安装下这个类库。安装命令如下：</p>
+
+<pre><code>gem install bundler
+</code></pre>
+
+<p>安装完事之后你再次启动命令<strong>jekyll serve</strong>结果又是报错了，报错内容如下：</p>
+
+<p><img src="%22image/error_02.png%22" alt="img"></p>
+
+<p>通过这张图我们可以看到，我又缺少了一个叫<strong>minima</strong> 的类库。真“mini妈”啊小了就是藏的深啊。不一下子给我爆出来，我们继续安装这个<strong>minima</strong>的类库命令如下：</p>
+
+<pre><code>gem install minima
+</code></pre>
+
+<p>到这里心里想终于解决完了，好了继续运行我的服务命令<strong>jekyll serve</strong> 又TMD报错，这下我可怒了玩一个自建博客有TMD这么费劲吗报错如下图</p>
+
+<p><img src="%22image/error_03.png%22" alt="img"></p>
+
+<p>通过这个我们可以看到这4000端口被占用了，也就是没有权限我也是醉了。。。好吧我从新监听一个服务器端口号叫8000的命令如下</p>
+
+<pre><code>gem install minima --port 8000
+</code></pre>
+
+<p>我执行下完美运行，然后你可以访问http://localhost:8000网址效果如下
+<img src="%22image/show.png%22" alt="img"></p>
+
+<p>呵呵今天就写到这里了，，，，，，尽管报了一路子错，但是我相信肯定有解决办法的，俗话说的好办法总比错误多呵呵。。。</p>
+
+<p>生成的<strong>heimao_blog</strong>文件至于里边的结构你可以参考<a href="http://jekyll.com.cn/docs/structure/">目录结构介绍</a>进行你自己的网站设计修改</p>
+
+<p>如果你嫌弃这样做的不知道new出来的一个什么项目。
+手动创建文件分类或者自己的网站风格的话可以参看<a href="http://jekyll.com.cn/">官网教程</a>
+逐个新建我们的文档，布局，生成文件，和我们的_config.yml。</p>
+
+<p>对了我这推荐一些jekyll的一些模版请笑纳呵呵。
+<a href="http://jekyllthemes.org/">http://jekyllthemes.org/</a></p>
+
+<p><a href="https://github.com/jekyll/jekyll/wiki/Sites">https://github.com/jekyll/jekyll/wiki/Sites</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/heimiao/heimao_blog">Heimao blog</a> is maintained by <a href="https://github.com/heimiao">heimiao</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
 </html>
