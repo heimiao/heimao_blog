@@ -1,27 +1,8 @@
  <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>{{page.title}}</title>
-		<script src="js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script> 
-		</script>
-		 <style type="text/css"> 
-		 	.test{
-		 		width:100px;
-		 		height:100px;
-				color:red;
-		 		border:1px solid red;
-		 		border-radius:20px;
-		 		box-shadow:2px 2px 50px 1px red;
-		 		
-		 	}
-		 </style>
-	</head>
-
+	 {% include header.html %}
 	<body>
-		<div  class="test">
-			{{page.title}}
-		</div>
-		<div  style="height:500px;border:1px solid blue;width:100%;">{{content}}</div>
+		<div class="cont">{{content}}</div>
+		{% include footer.html %}
 	</body>
 </html>
