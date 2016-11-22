@@ -5,5 +5,5 @@ layouts_dir:    ./_layouts
 host:		127.0.0.1
 port:		8080
 baseurl:	/
-url:		https://github.com/heimiao/heimao_blog/
+url:		https://heimiao.github.io/heimao_blog/
 img_url:	/image
