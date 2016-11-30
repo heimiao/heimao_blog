@@ -87,6 +87,8 @@ title: "本地搭建jekyll模版发布系统"
 * 配置我们新的淘宝镜像地址源
 		
 		gem sources -a http://ruby.taobao.org/
+		或
+		gem sources -a https://gems.ruby-china.org/
 
 * 如果想查看是否切换了可以用以下命令查看我们当前gem下载类库源是哪
 		
@@ -98,7 +100,7 @@ title: "本地搭建jekyll模版发布系统"
 
 打开我们的命令窗口，执行一下命令安装我们的jekyll
 		
-	gem intall jekyll
+	gem install jekyll
 
 安装完成之后如下图所示 
 
