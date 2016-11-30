@@ -54,7 +54,7 @@
 
 因为要用jekyll生成我们的博客网页，我们需要在本地搭建一个jekyll环境来用jekyll帮我们通过模版和markdwon文档生成静态页面来发布到gitpage上来，
 
-【[本地搭建jekyll模版发布系统](https://heimiao.github.io/heimao_blog/)】
+【[本地搭建jekyll模版发布系统](https://heimiao.github.io/heimao_blog//2016/11/16/jekyll_down.html)】
 
 想要了解更多的jekyll知识可以[点击我](http://jekyll.com.cn/)
 

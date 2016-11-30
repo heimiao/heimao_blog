@@ -1,6 +1,7 @@
 ---
 
 layout: index
+
 title: "本地搭建jekyll模版发布系统"
 
 ---
@@ -145,7 +146,7 @@ title: "本地搭建jekyll模版发布系统"
 
 通过这个我们可以看到这4000端口被占用了，也就是没有权限我也是醉了。。。好吧我从新监听一个服务器端口号叫8000的命令如下
 	
-	gem install minima --port 8000
+	jekyll serve --port 8000
 
 我执行下完美运行，然后你可以访问http://localhost:8000网址效果如下
 ![img]({{site.url}}/image/show.png)
