@@ -18,8 +18,7 @@ title : "我是主页"
 			<a href="https://github.com/heimiao/heimao_blog/tarball/master" class="btn">Download .tar.gz</a>
 			---->
 		</section>
-		<section class="main-content">
-			{% include header.html %}
+		<section class="main-content"> 
 
 			<body>
 				<div class="cont">
@@ -27,7 +26,8 @@ title : "我是主页"
 						{% for post in site.posts %}
 						<li>
 							<a href="{{site.url}}{{post.url}}">{{post.date|date_to_string}} {{post.title}}{{page.date}}</a>
-						</li>
+							<hr>
+						</li> 
 						{% endfor %}
 					</ul>
 				</div>

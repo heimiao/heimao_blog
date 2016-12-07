@@ -103,6 +103,8 @@ ruby dk.rb install
     <p>配置我们新的淘宝镜像地址源</p>
 
     <div class="highlighter-rouge"><pre class="highlight"><code>  gem sources -a http://ruby.taobao.org/
+  或
+  gem sources -a https://gems.ruby-china.org/
 </code></pre>
     </div>
   </li>
@@ -121,7 +123,7 @@ ruby dk.rb install
 
 <p>打开我们的命令窗口，执行一下命令安装我们的jekyll</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gem intall jekyll
+<div class="highlighter-rouge"><pre class="highlight"><code>gem install jekyll
 </code></pre>
 </div>
 
@@ -181,7 +183,7 @@ jekyll -h
 
 <p>通过这个我们可以看到这4000端口被占用了，也就是没有权限我也是醉了。。。好吧我从新监听一个服务器端口号叫8000的命令如下</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gem install minima --port 8000
+<div class="highlighter-rouge"><pre class="highlight"><code>jekyll serve --port 8000
 </code></pre>
 </div>
 
