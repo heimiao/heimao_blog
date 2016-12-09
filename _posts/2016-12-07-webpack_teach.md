@@ -87,6 +87,7 @@ title: "使用wepack搭建自己的react小程序"
 	"scripts": {
 		"build": "webpack"
 		}
+
 配置好后我们执行 `npm run build` 
 
 再打开我们的build目录下会生成一个叫bundle.js了，同时用浏览器打开我们的index.html会显示
@@ -102,6 +103,7 @@ title: "使用wepack搭建自己的react小程序"
 		"dev": "webpack-dev-server --devtool eval --progress --colors --hot --        	content-base build"
 		}
 	}
+
 你也许对dev的配置项很模糊吧，解释如下：
 
 1. webpack-dev-server - 在 localhost:8080 建立一个 Web 服务器
@@ -141,6 +143,7 @@ title: "使用wepack搭建自己的react小程序"
 			filename: 'bundle.js',
 		}
 	}
+
 到这里我们想要的结果可就达到了，我们随时修改代码，浏览器会自动刷新我们所做的修改。然后运行我们的启动命令`npm run dev`访问http://localhost:8080，同样也可以 http://localhost:8080/webpack-devserver/bundle 。 这个会触发一个默认的你不能控制的 index.html
 
 接下来的教程我将以提问为导向，一步一往下走了。别分神，小心跑偏了。
@@ -359,8 +362,7 @@ title: "使用wepack搭建自己的react小程序"
 当我们这一切做好之后，启动webpack编译，执行命令`webpack`你会发现你的build目录下新增一个image的文件并且包含了你的图片在内。这个时候启动我们的项目`npm run dev`你会发现我们的网页已经不再是天蓝色背景了，而是你引入的图片了。再次我们只是做了一css引用图片那我们的react应该怎么引用呢？
 
 #### 1.7.react中使用webpack打包的图片
-
-千呼万唤始出来，我们的react还半遮面。呵呵。。我们要使用react中的jsx语法的话需要修改main.js和我们的component.js。 
+千呼万唤始出来，我们的react还半遮面。我们要使用react中的jsx语法的话需要修改main.js和我们的component.js。 
 
 修改main.js为，代码如下：
 	
@@ -374,7 +376,8 @@ title: "使用wepack搭建自己的react小程序"
 	
 	ReactDom.render(<App data={["map","set","test"]/>, document.getElementById('app'))
 
-通过代码我们可以看到这里改的和以前的main.js一点也不一样了，不再是appenChild原生方法了，而是引入了react的reacDom组件。当然还有我们前边引入的sass/index.scss以及react，和我们的commpoent组件。为了分辨js的入口清晰点我把compoent。js放到app/component目录下了。以及在index.html页面上添加一个`<div id='app'></div>`标签，接下来我们要在这个标签内部追加内容了
+通过代码我们可以看到这里改的和以前的main.js一点也不一样了，不再是appenChild原生方法了，而是引入了react的reacDom组件。当然还有我们前边引入的sass/index.scss以及react，和我们的commpoent组件。为了分辨js的入口清晰点我把compoent。js放到app/component目录下了。以及在index.html页面上添加一个`<div id='app'></div>`标签，接下来我们要在这个标签内部追加内容了。
+当然我们这里用到了一个新的组件库react-dom我们需要对他做安装,安装命令`npm insall react-dom --save-dev`
 
 然后修改我们的components/component.js组件
 		
