@@ -5,7 +5,10 @@ layout: index
 title: "使用wepack搭建自己的react小程序"
 
 ---
- 
+
+ 本博客暂不支持评论模块，后期会努力加上，
+有问题讨论群如下
+QQ群：536286957
 ## 使用wepack搭建自己的react小程序
 **前言：**前几天刚把jekyll这块看了下同时也把教程写下来放到了git上，预防自己忘记也给小白更多的机会练练手。今天就把我用webpack搭建项目的顺序一步一步道来。我相信走过这么一遭就对react了解的差不多了。
 
@@ -23,7 +26,7 @@ title: "使用wepack搭建自己的react小程序"
 
 	npm init
 在我们的react-webpack文件下会自动生成一个package.js文件，我们暂时不管这个文件，
-接下来我们再次输入命令安装webpack，命令如下：
+接下来我们再次输入安装webpack的命令，命令如下：
 	
 	npm install webpack --save-dev
 
@@ -44,8 +47,8 @@ title: "使用wepack搭建自己的react小程序"
 
 	var path=require("path");
 		module.exports={
-			entry:path.resolve(__dirname, 'app/main.js')
-		},
+
+		entry:path.resolve(__dirname, 'app/main.js'),
 		output: {
 			path: path.resolve(__dirname, 'build'),
 			filename: 'bundle.js',
@@ -74,7 +77,8 @@ title: "使用wepack搭建自己的react小程序"
 	var component = require('./component.js');
 	document.body.appendChild(component());
 
-这两个文件就是main.js调用component.js里边的方法 把`我是黑猫`输出到页面上。
+
+这两个文件就是把`我是黑猫`字段输出到页面上。
 
 在这里我们先手动在build文件里边新建一个index.html并引入bundle.js,刚才我说了bundle.js是有webpack生成的所以我们只关心配置项就可以了。
 现在我们所有的事情都做好之后就只欠webpack编译成bundle.js这步了，在命令窗口你可以执行命令：
@@ -83,10 +87,12 @@ title: "使用wepack搭建自己的react小程序"
 当然如果你不想这么运行，也可以在package.json的script标签里边配置自己喜欢的别名，作为启动项命令，配置如下：
 	
 	//package.json
-
+	
+	
 	"scripts": {
 		"build": "webpack"
 		}
+
 
 配置好后我们执行 `npm run build` 
 
@@ -100,7 +106,7 @@ title: "使用wepack搭建自己的react小程序"
 	{
 		"scripts": {
 		"build": "webpack",
-		"dev": "webpack-dev-server --devtool eval --progress --colors --hot --        	content-base build"
+		"dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build"
 		}
 	}
 
@@ -112,7 +118,7 @@ title: "使用wepack搭建自己的react小程序"
 4. --colors - Yay， 命令行中显示颜色！
 5. --content-base build - 指向设置的输出目录
 
-这个模块的功能就是一个服务，剩下来的就是让我们访问http://localhost:8080。当然浏览器这时并不会自动的刷新，而且还需要们手动F5，为了不再做F5的动作。这时我们还需要做两件事，第一件修 index.html页面，代码如下：
+这个模块的功能就是一个服务，让我们启动下我们的服务，输入命令：`npm run dev`剩下来的就是让我们访问http://localhost:8080。当然浏览器这时并不会自动的刷新，而且还需要们手动F5，为了不再做F5的动作。这时我们还需要做两件事，第一件修 index.html页面，代码如下：
 	
 	//index.html
 
@@ -175,9 +181,7 @@ title: "使用wepack搭建自己的react小程序"
 		//webpack.config.js
 	
 		var webpack = require('webpack');
-		var path = require('path');
-
-		var node_modules = path.resolve(__dirname, 'node_modules');
+		var path = require('path'); 
 
 		module.exports ={
 			entry:  ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')], 
@@ -189,13 +193,6 @@ title: "使用wepack搭建自己的react小程序"
 			module:{ 
 					loaders:[
 					 {
-							test: /\.jsx?$/,
-							exclude: /node_modules/,
-						    loader: 'babel',
-							query:{ 
-								presets:['es2015','react']
-							}
-						},{
 							test: /\.css$/,
 			      			loader: 'style!css'
 						},{
@@ -223,23 +220,26 @@ title: "使用wepack搭建自己的react小程序"
 现在我单独拿我喜欢的sass来开刀，其他配置接下来我会挨个介绍。（PS:sass需要安装node-sass编译器的`npm install node-sass --save-dev`）
 
 单看我的sass用到了style css 和sass这三个loader,可能你有疑问了，为什么需要这三个呢？
-答：sass-loader负责读取我们的sass文件并且编译成css，编译好后交给css-loader读取转化再交给style-loader写入到我们的页面上。我在上边说了loader遵循管道链式调用的，每个返回都是一个javascript所以一直传递到style-loader上并且写到页面上。当然你也可以这样配置：`loader:style-loader!css-loader!sass-loader`把loader加上。后边的sourceMap是做调试用的，打印log用的
 
-配置就算是完事了，安装我们的sass-loader ,`npm install sass-loader --save-dev`。等我们安装完成之后我们就可以写sass了，在app目录下创建sass/index.scss编写我们的index.scss样式代码如下
+答：sass-loader负责读取我们的sass文件并且编译成css，编译好后交给css-loader读取转化再交给style-loader写入到我们的页面上。我在上边说了loader遵循管道链式调用的，每个返回都是一个javascript所以一直传递到style-loader上并且写到页面上。当然你也可以这样配置：`loader:style-loader!css-loader!sass-loader`把loader加上。后边的sourceMap是为了方便我们调试用的
+
+配置就算是完事了，安装我们的sass-loader ,`npm install node-sass css-loader style-loader sass-loader --save-dev`。等我们安装完成之后我们就可以写sass了，在app目录下创建sass/index.scss编写我们的index.scss样式代码如下
 	
-	html{
-    background:skyblue;
-	    h1{
-	        font-size:18px;
-	    }
-	｝
+	html,body{
+		background:skyblue;
+		h1{
+			font-size:16px;
+		}
+	}
 
 
 最后我们就差一步了，要把我们写的index.scss导入到 **app/main.js**文件内 代码如下：
 	
-	//main.js
+	//main.js 
 	
-	require("./sass/index.scss")
+	var component = require('./component.js');  
+	document.body.appendChild(component());
+	require("./sass/index.scss") 
 
 接下来运行`npm run dev`访问http://localhost:8080,看到天蓝色的背景说明你成功了。
 说到这里你会发现我们的css自动发布到html页面上了，感觉又回到了八十年代的编码方式了， 但是我想要单独编译成独立css文件要怎么办呢？
@@ -252,60 +252,44 @@ title: "使用wepack搭建自己的react小程序"
 
 		//webpack.config.js
 		
-		// 导入我们的extract-text-webpack-plugin插件 
-		var webpack = require('webpack');
-		var path = require('path');
-		var node_modules = path.resolve(__dirname, 'node_modules');
-		var ExtractTextPlugin = require("extract-text-webpack-plugin");	
-		
-		module.exports ={
-			entry:  ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')], 
-			output:{
-				path:path.resolve(__dirname,'build'),
-				filename: 'index.js',
-			},   
-			module:{ 
-					loaders:[
-					 {
-							test: /\.jsx?$/,
-							exclude: /node_modules/,
-						    loader: 'babel',
-							query:{ 
-								presets:['es2015','react']
-							}
-						},{
-							test: /\.css$/,
-			      			loader: 'style!css'
-						},{
-							test: /\.less$/,
-			      			loader: 'style!css!less'
-						},
-						
-						{
-							test: /\.scss$/,
-			      			//loader: 'style!css!sass?sourceMap'
-							loader: ExtractTextPlugin.extract(
-					            'css?sourceMap!' +
-					            'sass?sourceMap'
-					        )
-							
-						}
+	var webpack = require('webpack');
+	var path = require('path');
+	var ExtractTextPlugin = require("extract-text-webpack-plugin");
+	
+	module.exports = {
+		entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')],
+		output: {
+			path: path.resolve(__dirname, 'build'),
+			filename: 'index.js',
+		},
+		module: {
+			loaders: [{
+				test: /\.css$/,
+				loader: 'style!css'
+			}, {
+				test: /\.less$/,
+				loader: 'style!css!less'
+			}, {
+				test: /\.scss$/,
+				//loader: 'style!css!sass?sourceMap'
+				loader: ExtractTextPlugin.extract(
+					'css?sourceMap!' +
+					'sass?sourceMap'
+				)
+			}, {
+				test: /\.(png|jpg)$/,
+				loader: 'url?limit=8192'
+			}]
+		}, 
+		plugins: [
+			new ExtractTextPlugin('styles.css')
+		] 
+	}
 
-						,{
-							test: /\.(png|jpg)$/, 
-			     			loader: 'url?limit=8192' 
-						}
-					]
-				},
-			
-				plugins:[  
-					 new ExtractTextPlugin('styles.css')
-					]  
-
-		}
-
-通过配置文件我们可以看到，修改了样式loader的加载方式，而且还新增了plugins插件配置项，这个配置项就是告诉webpack要把css输出到哪个文件下，当然我这里输出到根目录下style.css文件下当我们配置好之后可以执行命令：`webpack`
-你会在你的build目录下会发现新增了一个style.css是不是很神奇，把你的style.css引入到你的index.html吧！然后启动我们的项目`npm run dev`这样做是不是感觉很爽呀！！可是问题又来了，那我们的图片需要怎么打包进去呢？？
+通过配置文件我们可以看到，修改了样式loader的加载方式，而且还新增了plugins插件配置项，这个配置项就是告诉webpack要把css输出到哪个文件下，当然我这里输出到根目录下style.css文件下你也可以添加自己的路径（PS:style/style.css）
+当我们配置好之后可以执行命令：`webpack`
+你会在你的build目录下会发现新增了一个style.css是不是很神奇，把你的style.css引入到你的index.html吧！然后启动我们的项目`npm run dev`这样做是不是感觉很爽呀
+(PS:直接执行npm run dev也能看到，执行webpack是把css编译到本地)！！可是问题又来了，那我们的图片需要怎么打包进去呢？？
 
 #### 1.6.webpack打包图片
 
@@ -315,42 +299,52 @@ title: "使用wepack搭建自己的react小程序"
 
 		//webpack.config.js
 		
-		module:{ 
-			loaders:[
-			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-			    loader: 'babel',
-				query:{ 
-					presets:['es2015','react']
-				}
-			},{
-				test: /\.css$/,
-      			loader: 'style!css'
-			},{
-				test: /\.less$/,
-      			loader: 'style!css!less'
-			},{
-				test: /\.scss$/,
-				//loader:'style!css!sass?sourceMap'
-				loader: ExtractTextPlugin.extract(
-		            'css?sourceMap!' +
-		            'sass?sourceMap'
-		        )
+		var webpack = require('webpack');
+		var path = require('path');
+		var ExtractTextPlugin = require("extract-text-webpack-plugin");
+		
+		module.exports = {
+			entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')],
+			output: {
+				path: path.resolve(__dirname, 'build'),
+				filename: 'index.js',
 			},
-			{
-				test: /\.(png|jpg|gif)$/, 
-     			loader: 'url?limit=8192&name=images/[hash:8].[name].[ext]' 
-			}
-
-			]
+			module: {
+				loaders: [{
+					test: /\.css$/,
+					loader: 'style!css'
+				}, {
+					test: /\.less$/,
+					loader: 'style!css!less'
+				}, {
+					test: /\.scss$/,
+					//loader: 'style!css!sass?sourceMap'
+					loader: ExtractTextPlugin.extract(
+						'css?sourceMap!' +
+						'sass?sourceMap'
+					)
+				}, {
+					test: /\.(png|jpg)$/,
+					loader: 'url?limit=8192'
+				},{
+						test: /\.(png|jpg|gif)$/, 
+		     			loader: 'url?limit=8192&name=[hash:8].[name].[ext]' 
+				 }]
+			}, 
+			plugins: [
+				new ExtractTextPlugin('styles.css')
+			] 
 		}
 
-再次我们的配置项新增了图片的loader，这个loader只是加载了rul-loader，后边的limit的意思是超过8192字节了会以64bate编码方式输入并不是超过这么大就不打包了。之后跟的参数name则是我们的输出路径，需要把图片放到build目录下的哪个地方。后边的则是以has:8方式自动生成图片文件名称，
+再此我们的配置项新增了图片的loader，这个loader只是加载了rul-loader，后边的limit的意思是超过8192字节了会以64bate编码方式输入并不是超过这么大就不打包了。之后跟的参数name则是我们的输出路径，需要把图片放到build目录下的哪个地方。后边的则是以hash: 编码方式生成图片文件名称，
 
-接下我们要使用我们的图片了。react内部还是css上呢？如果需要在css那你就得需要把我们的index.scss文件引入到我们的main.js内部,代码如下
+接下我们要使用我们的图片了。我先说在css中引用图片？如果需要在css那你就得需要把我们的index.scss文件引入到我们的main.js内部,代码如下
 
-	require("./sass/index")
+	//app/main.js
+
+	var component = require('./component.js'); 
+	require("./sass/index.scss") 
+	document.body.appendChild(component());
 
 修改我们的index.scss文件，为html添加一个背景，代码如下：
 	
@@ -361,25 +355,74 @@ title: "使用wepack搭建自己的react小程序"
 	    }
 	｝
 
-当我们这一切做好之后，启动webpack编译，执行命令`webpack`你会发现你的build目录下新增一个image的文件并且包含了你的图片在内。这个时候启动我们的项目`npm run dev`你会发现我们的网页已经不再是天蓝色背景了，而是你引入的图片了。再次我们只是做了一css引用图片那我们的react应该怎么引用呢？
+当我们这一切做好之后，启动webpack编译，执行命令`webpack`你会发现你的build目录下新增一个image的文件包含了你的图片。这个时候启动我们的项目`npm run dev`你会发现我们的网页已经不再是天蓝色背景了，而是你引入的图片了。再次我们只是做了一css引用图片那我们的react应该怎么引用呢？
 
 #### 1.7.react中使用webpack打包的图片
-千呼万唤始出来，我们的react还半遮面。我们要使用react中的jsx语法的话需要修改main.js和我们的component.js。 
+千呼万唤始出来，我们的react还半遮面。我们要使用react的话需要安装babel组件，所需babel命令如下
+`npm install react babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev`然后修改main.js和component.js以及webpack.config.js 
+
+修改webpack.config.js,代码如下 
+
+	//webpack.config.js	
+
+	var webpack = require('webpack');
+	var path = require('path');
+	var ExtractTextPlugin = require("extract-text-webpack-plugin");
+	
+	module.exports = {
+		entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')],
+		output: {
+			path: path.resolve(__dirname, 'build'),
+			// publicPath: '/assets/',
+			filename: 'index.js',
+		},
+		module: {
+			loaders: [{
+				test: /\.jsx?$/,
+				exclude: /node_modules/,
+				loader: 'babel',
+				query: {
+					presets: ['es2015', 'react']
+				}
+			}, {
+				test: /\.css$/,
+				loader: 'style!css'
+			}, {
+				test: /\.less$/,
+				loader: 'style!css!less'
+			}, {
+				test: /\.scss$/,
+				//loader: 'style!css!sass?sourceMap'
+				loader: ExtractTextPlugin.extract(
+					'css?sourceMap!' +
+					'sass?sourceMap'
+				)
+			}, {
+				test: /\.(png|jpg)$/,
+				loader: 'url?limit=8192'
+			}, {
+				test: /\.(png|jpg|gif)$/,
+				loader: 'url?limit=8192&name=images/[hash:8].[name].[ext]'
+			}]
+		},
+		plugins: [
+			new ExtractTextPlugin('styles.css')
+		]
+	}
 
 修改main.js为，代码如下：
 	
 	//main.js
 
-	require("./sass/index") 
+	require("./sass/index.scss")
 	var React = require('react');
 	var ReactDom = require('react-dom');
-	var App = require('./components/component'); 
-	 
+	var App = require('./components/component');
 	
-	ReactDom.render(<App data={["map","set","test"]/>, document.getElementById('app'))
+	ReactDom.render(<App data={["map","set","test"]}/>, document.getElementById('app'))
 
 通过代码我们可以看到这里改的和以前的main.js一点也不一样了，不再是appenChild原生方法了，而是引入了react的reacDom组件。当然还有我们前边引入的sass/index.scss以及react，和我们的commpoent组件。为了分辨js的入口清晰点我把compoent。js放到app/component目录下了。以及在index.html页面上添加一个`<div id='app'></div>`标签，接下来我们要在这个标签内部追加内容了。
-当然我们这里用到了一个新的组件库react-dom我们需要对他做安装,安装命令`npm insall react-dom --save-dev`
+当然我们这里用到了一个新的组件库react-dom我们需要对他做安装,安装命令`npm install react-dom --save-dev`
 
 然后修改我们的components/component.js组件
 		
@@ -396,18 +439,16 @@ title: "使用wepack搭建自己的react小程序"
 	  	};  
 	  	 var commentNodes=this.props.data.map(function(comment){
 				return (
-					<div key={comment} className="btn_warning">遍历</div>
+					<input type="button" key={comment} className="btn_warning" value="遍历"/> 
 				);
 		 }); 
-
+		
 	    return (
 	    	<div>
 	    		<h1>
 			       	欢迎进入黑猫编程React世界！！！
-			    </h1>
-			    <a className="btn_default">默认按钮</a>
-			    <input type="button" className="btn_error" value="错误按钮"/>
-			    <span className="btn_success">成功按钮</span>
+			    </h1> 
+			    <input type="button" className="btn_error" value="错误按钮"/> 
 			    {commentNodes}
 			    <button className="btn_info">普通按钮</button>
 			    
@@ -418,7 +459,7 @@ title: "使用wepack搭建自己的react小程序"
 		  }
 	});
 
-通过component.js中我们可以看到我们&lt;img&gt标签的src属性指向的是require("url")当然，学到这里我们没有用新的ES6语法，依然用的是ES5的语法写的。如果你会你可以改成E6的语法
+通过component.js中我们可以看到我们&lt;img&gt标签的src属性指向的是require("url")当然，学到这里我们没有用新的ES6语法，依然用的是ES5的语法写的。如果你会es6你可以改成E6的语法
 看到component.js里的代码是不是懵圈了，我会挨个介绍给你，
 
 + React.createClass：这个不再是我们以前的function函数了，而他返回值是reactDom。render方法所要接收的jsx对象或者是dom对象，
@@ -437,7 +478,9 @@ title: "使用wepack搭建自己的react小程序"
 打包html需要安装html-webpack-plugin这个插件负责把我们的html编译到hbuild文件夹下的，首先我们老步骤安装下`npm insall html-webpack-plugin`当我们安装完成之后我们需要继续配置我们的webpack.config.js这个配置文件。
 	
 	var HtmlwebpackPlugin = require('html-webpack-plugin');//该插件是编译html用的
-	
+	/***
+		todo
+	**/
 	//
 	plugins:[ 
 	 new ExtractTextPlugin('styles.css'),
@@ -470,3 +513,5 @@ title: "使用wepack搭建自己的react小程序"
 excludeChunks: 允许跳过某些块，(比如，跳过单元测试的块)
 
 [了解更多html-webpack-plugin插件]("https://www.npmjs.com/package/html-webpack-plugin");
+
+好了说到这里用webpack打包一些静态的资源以及服务热部署都完事了，当然一个项目不仅仅依赖这些还有别的react-router路由转发,react-tranform热替换，immutable按需加载，等等。。都是我们以后会用到的。今天先暂时到这以后我会持续更新路由和redux以及我们的es6我也是一边学一边记。哪有错误还请原谅，
