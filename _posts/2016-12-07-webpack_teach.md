@@ -298,6 +298,7 @@ title: "使用wepack搭建自己的react小程序"
 					]  
 
 		}
+
 通过配置文件我们可以看到，修改了样式loader的加载方式，而且还新增了plugins插件配置项，这个配置项就是告诉webpack要把css输出到哪个文件下，当然我这里输出到根目录下style.css文件下当我们配置好之后可以执行命令：`webpack`
 你会在你的build目录下会发现新增了一个style.css是不是很神奇，把你的style.css引入到你的index.html吧！然后启动我们的项目`npm run dev`这样做是不是感觉很爽呀！！可是问题又来了，那我们的图片需要怎么打包进去呢？？
 
