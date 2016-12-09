@@ -22,7 +22,7 @@ title: "使用wepack搭建自己的react小程序"
 输入命令：
 
 	npm init
-在我们的webpack文件下会自动生成一个package.js文件，我们暂时不管这个文件，
+在我们的react-webpack文件下会自动生成一个package.js文件，我们暂时不管这个文件，
 接下来我们再次输入命令安装webpack，命令如下：
 	
 	npm install webpack --save-dev
@@ -234,6 +234,7 @@ title: "使用wepack搭建自己的react小程序"
 	    }
 	｝
 
+
 最后我们就差一步了，要把我们写的index.scss导入到 **app/main.js**文件内 代码如下：
 	
 	//main.js
@@ -427,4 +428,45 @@ title: "使用wepack搭建自己的react小程序"
 
 [了解更多的React语法]('http://www.react-cn.com/docs/forms.html')
 
-做到这里我们写了一些react的语法和组件，如果你对react语法不是很了解，我还是推荐你先学习下react语法，再此我们不做react详细介绍了。
+做到这里我们写了一些react的语法和组件，如果你对react语法不是很了解，我还是推荐你先学习下[react语法]('http://www.react-cn.com/docs/forms.html')，再此我们不做react详细介绍了。,问题又来了呵呵，我还想把html也要通过这样的方式编译到我的build，这样我的build下的文件全部是生成的，我就不用维护build下的html了，这样岂不是更爽呢！！那要怎么打包html呢？
+
+#### 1.8.react打包html
+
+说到这里是我做的最后一个静态资源打包内容了噢噢，
+在app目录下新建我们的html文件夹,并且在app/html新建我们的index.html把我们之前的build内的index.html放进来即可。我们需要把这个html编译到build下。
+打包html需要安装html-webpack-plugin这个插件负责把我们的html编译到hbuild文件夹下的，首先我们老步骤安装下`npm insall html-webpack-plugin`当我们安装完成之后我们需要继续配置我们的webpack.config.js这个配置文件。
+	
+	var HtmlwebpackPlugin = require('html-webpack-plugin');//该插件是编译html用的
+	
+	//
+	plugins:[ 
+	 new ExtractTextPlugin('styles.css'),
+	 new HtmlwebpackPlugin({
+      	title: 'Hello World app',
+      	template:"./app/html/index1.html",
+      	/*minify:{ //压缩HTML文件
+			removeComments:true, //移除HTML中的注释
+			collapseWhitespace:true //删除空白符与换行符
+			}*/
+    	})
+	]
+
+
++ title: 用于生成的HTML文件的标题。
++ filename: 用于生成的HTML文件的名称，默认是index.html。你可以在这里指定子目录。
++ template: 模板文件路径，支持加载器，比如 html!./index.html
++ inject: true | 'head' | 'body' | false ,注入所有的资源到特定的 template 或者 templateContent 中，如果设置为 true 或者 body，所有的 javascript 资源将被放置到 body 元素的底部，'head' 将放置到 head 元素中。
++ favicon: 添加特定的 favicon 路径到输出的 HTML 文件中。
++ minify:{ 
+ //压缩HTML文件 
+ removeComments:true, //移除HTML中的注释
+ collapseWhitespace:true //删除空白符与换行符
+	}
++ hash: true | false, 如果为 true, 将添加一个唯一的 webpack 编译 hash 到所有包含的脚本和 CSS 文件，对于解除 cache 很有用。
++ cache: true | false，如果为 true, 这是默认值，仅仅在文件修改之后才会发布文件。
++ showErrors: true | false, 如果为 true, 这是默认值，错误信息会写入到 HTML 页面中
++ chunks: 允许只添加某些块 (比如，仅仅 unit test 块)
++ chunksSortMode: 允许控制块在添加到页面之前的排序方式，支持的值：'none' | 'default' | {function}-default:'auto'
+excludeChunks: 允许跳过某些块，(比如，跳过单元测试的块)
+
+[了解更多html-webpack-plugin插件]("https://www.npmjs.com/package/html-webpack-plugin");
