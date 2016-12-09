@@ -213,6 +213,7 @@ title: "使用wepack搭建自己的react小程序"
 
 
 		}
+
 通过webpack的配置文件可以看到我配置了css，sass，less，和图片，这些配置项解释如下：
 
 +  loaders：可以是数组可以是对象。我这里是数组形式的
@@ -232,6 +233,7 @@ title: "使用wepack搭建自己的react小程序"
 	        font-size:18px;
 	    }
 	｝
+
 最后我们就差一步了，要把我们写的index.scss导入到 **app/main.js**文件内 代码如下：
 	
 	//main.js
@@ -243,8 +245,7 @@ title: "使用wepack搭建自己的react小程序"
 
 #### 1.5.webpack打包成独立的css文件
 
-想要打包成我们的独立文件，我们需要extract-text-webpack-plugin这个插件，废话少说，
-安装这个插件`npm install extract-text-webpack-plugin --save-dev`
+想要打包成我们的独立文件，我们需要extract-text-webpack-plugin这个插件，废话少说，安装这个插件`npm install extract-text-webpack-plugin --save-dev`
 
 修改webpack.config.js配置如下：
 
