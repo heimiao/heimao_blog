@@ -133,7 +133,7 @@ title: "使用wepack搭建自己的react小程序"
 
 	var webpack = require('webpack');
 	var path = require('path');
-	var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+ 
 	module.exports ={
 		entry:  ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')],
 		output:{
@@ -146,9 +146,12 @@ title: "使用wepack搭建自己的react小程序"
 接下来的教程我将以提问为导向，一步一往下走了。别分神，小心跑偏了。
 目前我们的webpack的基本功能跑起来了，不过有一个问题，那就是webpack不仅仅打包我们的js模块，那我们的less，sass，html，css,静态资源要怎么打包呢？需要怎么在我们的项目中应用呢？
 
+**警告**以下我会把output配置项的filename:bundle.js修改成了自己喜欢的filename:index.js了，所以index.html引入的bundle.js也的改成index.js
+
+
 #### 1.4.webpack针对静态资源的配置和使用
 
-加载我们的静态资源就需要我们在webpack.config.js中添加loader了，而这个loader就是负责把静态资源转发成webpack能打包的js.这下明白了么呵呵。而webpack这个loader是个遵循管道方式的链式调用，但是每个返回都是javascript噢噢。以下都是loader的特性。
+加载我们的静态资源就需要我们在webpack.config.js中添加loader了，而这个loader就是负责把静态资源转化成webpack能打包的js.这下明白了么呵呵。而webpack这个loader是个遵循管道方式的链式调用，但是每个返回都是javascript噢噢。以下都是loader的特性。
 
 + Loader 可以通过管道方式链式调用，每个 loader 可以把资源转换成任意格式并传递给下
 一个 loader ，但是最后一个 loader 必须返回 JavaScript。
@@ -170,6 +173,9 @@ title: "使用wepack搭建自己的react小程序"
 	
 		var webpack = require('webpack');
 		var path = require('path');
+
+		var node_modules = path.resolve(__dirname, 'node_modules');
+
 		module.exports ={
 			entry:  ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')], 
 			output:{
@@ -210,7 +216,7 @@ title: "使用wepack搭建自己的react小程序"
 +  test ：  当loader读取这些文件的时候所要遵循的正则表达式
 +  loader：加载我们需要的转化器，多个转化器用“！”分割
 
-我单独拿我喜欢的sass来开刀，其他都一样比葫芦画瓢的配置就行。（PS:sass需要安装node-sass编译器的`npm install node-sass --save-dev`）
+现在我单独拿我喜欢的sass来开刀，其他配置接下来我会挨个介绍。（PS:sass需要安装node-sass编译器的`npm install node-sass --save-dev`）
 
 单看我的sass用到了style css 和sass这三个loader,可能你有疑问了，为什么需要这三个呢？
 答：sass-loader负责读取我们的sass文件并且编译成css，编译好后交给css-loader读取转化再交给style-loader写入到我们的页面上。我在上边说了loader遵循管道链式调用的，每个返回都是一个javascript所以一直传递到style-loader上并且写到页面上。当然你也可以这样配置：`loader:style-loader!css-loader!sass-loader`把loader加上。后边的sourceMap是做调试用的，打印log用的
@@ -225,24 +231,28 @@ title: "使用wepack搭建自己的react小程序"
 	｝
 最后我们就差一步了，要把我们写的index.scss导入到 **app/main.js**文件内 代码如下：
 	
+	//main.js
+	
 	require("./sass/index.scss")
 
 接下来运行`npm run dev`访问http://localhost:8080,看到天蓝色的背景说明你成功了。
-说到这里你会发现我们的css自动发布到html页面上了，感觉又回到了八十年代的编码方式了，不行我么要单独打包成样式文件，自己手动引入style。css，那好接下来我们就往下继续走。
+说到这里你会发现我们的css自动发布到html页面上了，感觉又回到了八十年代的编码方式了， 但是我想要单独编译成独立css文件要怎么办呢？
 
-#### 1.4.webpack打包成独立的文件
+#### 1.5.webpack打包成独立的css文件
 
 想要打包成我们的独立文件，我们需要extract-text-webpack-plugin这个插件，废话少说，
 安装这个插件`npm install extract-text-webpack-plugin --save-dev`
 
-修改iwebpack.config.js配置如下：
+修改webpack.config.js配置如下：
 
 		//webpack.config.js
 		
-		// 导入我们的extract-text-webpack-plugin插件
-	
+		// 导入我们的extract-text-webpack-plugin插件 
 		var webpack = require('webpack');
 		var path = require('path');
+		var node_modules = path.resolve(__dirname, 'node_modules');
+		var ExtractTextPlugin = require("extract-text-webpack-plugin");	
+		
 		module.exports ={
 			entry:  ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')], 
 			output:{
@@ -264,15 +274,152 @@ title: "使用wepack搭建自己的react小程序"
 						},{
 							test: /\.less$/,
 			      			loader: 'style!css!less'
-						},{
+						},
+						
+						{
 							test: /\.scss$/,
-			      			loader: 'style!css!sass?sourceMap'
-						},{
+			      			//loader: 'style!css!sass?sourceMap'
+							loader: ExtractTextPlugin.extract(
+					            'css?sourceMap!' +
+					            'sass?sourceMap'
+					        )
+							
+						}
+
+						,{
 							test: /\.(png|jpg)$/, 
 			     			loader: 'url?limit=8192' 
 						}
 					]
-				} 
-
+				},
+			
+				plugins:[  
+					 new ExtractTextPlugin('styles.css')
+					]  
 
 		}
+通过配置文件我们可以看到，修改了样式loader的加载方式，而且还新增了plugins插件配置项，这个配置项就是告诉webpack要把css输出到哪个文件下，当然我这里输出到根目录下style.css文件下当我们配置好之后可以执行命令：`webpack`
+你会在你的build目录下会发现新增了一个style.css是不是很神奇，把你的style.css引入到你的index.html吧！然后启动我们的项目`npm run dev`这样做是不是感觉很爽呀！！可是问题又来了，那我们的图片需要怎么打包进去呢？？
+
+#### 1.6.webpack打包图片
+
+在app目录下新建image目录 app/image/，你随便找个图片放到app/image下，接下来我们要对这个目录下的图片进行打包。
+
+当然我们需要打包图片的话，要url-loader和file-loader这两个加载器，同样的办法，安装这两个loader到我们的本地项目作为依赖项执行命令：`npm install url-loader file-loader --save-dev`当我们把这两个loader安装完之后，打开我们的webpack.config.js配置项如下
+
+		//webpack.config.js
+		
+		module:{ 
+			loaders:[
+			{
+				test: /\.jsx?$/,
+				exclude: /node_modules/,
+			    loader: 'babel',
+				query:{ 
+					presets:['es2015','react']
+				}
+			},{
+				test: /\.css$/,
+      			loader: 'style!css'
+			},{
+				test: /\.less$/,
+      			loader: 'style!css!less'
+			},{
+				test: /\.scss$/,
+				//loader:'style!css!sass?sourceMap'
+				loader: ExtractTextPlugin.extract(
+		            'css?sourceMap!' +
+		            'sass?sourceMap'
+		        )
+			},
+			{
+				test: /\.(png|jpg|gif)$/, 
+     			loader: 'url?limit=8192&name=images/[hash:8].[name].[ext]' 
+			}
+
+			]
+		}
+
+再次我们的配置项新增了图片的loader，这个loader只是加载了rul-loader，后边的limit的意思是超过8192字节了会以64bate编码方式输入并不是超过这么大就不打包了。之后跟的参数name则是我们的输出路径，需要把图片放到build目录下的哪个地方。后边的则是以has:8方式自动生成图片文件名称，
+
+接下我们要使用我们的图片了。react内部还是css上呢？如果需要在css那你就得需要把我们的index.scss文件引入到我们的main.js内部,代码如下
+
+	require("./sass/index")
+
+修改我们的index.scss文件，为html添加一个背景，代码如下：
+	
+	 html{
+    	background:url("../images/test.jpg");   	
+	    h1{
+	        font-size:18px;
+	    }
+	｝
+
+当我们这一切做好之后，启动webpack编译，执行命令`webpack`你会发现你的build目录下新增一个image的文件并且包含了你的图片在内。这个时候启动我们的项目`npm run dev`你会发现我们的网页已经不再是天蓝色背景了，而是你引入的图片了。再次我们只是做了一css引用图片那我们的react应该怎么引用呢？
+
+#### 1.7.react中使用webpack打包的图片
+
+千呼万唤始出来，我们的react还半遮面。呵呵。。我们要使用react中的jsx语法的话需要修改main.js和我们的component.js。 
+
+修改main.js为，代码如下：
+	
+	//main.js
+
+	require("./sass/index") 
+	var React = require('react');
+	var ReactDom = require('react-dom');
+	var App = require('./components/component'); 
+	 
+	
+	ReactDom.render(<App data={["map","set","test"]/>, document.getElementById('app'))
+
+通过代码我们可以看到这里改的和以前的main.js一点也不一样了，不再是appenChild原生方法了，而是引入了react的reacDom组件。当然还有我们前边引入的sass/index.scss以及react，和我们的commpoent组件。为了分辨js的入口清晰点我把compoent。js放到app/component目录下了。以及在index.html页面上添加一个`<div id='app'></div>`标签，接下来我们要在这个标签内部追加内容了
+
+然后修改我们的components/component.js组件
+		
+	//component.js	
+
+	var React = require('react'); 
+	 	module.exports = React.createClass({
+
+	   render: function () {
+	  	var styles={
+	  		border:"1px solid red",
+	  		width:"500px",
+	  		height:"600px"
+	  	};  
+	  	 var commentNodes=this.props.data.map(function(comment){
+				return (
+					<div key={comment} className="btn_warning">遍历</div>
+				);
+		 }); 
+
+	    return (
+	    	<div>
+	    		<h1>
+			       	欢迎进入黑猫编程React世界！！！
+			    </h1>
+			    <a className="btn_default">默认按钮</a>
+			    <input type="button" className="btn_error" value="错误按钮"/>
+			    <span className="btn_success">成功按钮</span>
+			    {commentNodes}
+			    <button className="btn_info">普通按钮</button>
+			    
+			    <img src={require('../images/test.jpg')}/>
+			    <div style={styles} className="test_img"></div>
+	    	</div> 
+	    ); 
+		  }
+	});
+
+通过component.js中我们可以看到我们&lt;img&gt标签的src属性指向的是require("url")当然，学到这里我们没有用新的ES6语法，依然用的是ES5的语法写的。如果你会你可以改成E6的语法
+看到component.js里的代码是不是懵圈了，我会挨个介绍给你，
+
++ React.createClass：这个不再是我们以前的function函数了，而他返回值是reactDom。render方法所要接收的jsx对象或者是dom对象，
++ this.props：这个则是获取该组件的参数的方法
++ data.map:这个map方法只是对数组的遍历（PS:不能对json对象进行map遍历--这点确实很坑的）
++ className:则是html中的class类样式（PS:js中class和for是保留字，所以在js中用className代替class类样式）
+
+[了解更多的React语法]('http://www.react-cn.com/docs/forms.html')
+
+做到这里我们写了一些react的语法和组件，如果你对react语法不是很了解，我还是推荐你先学习下react语法，再此我们不做react详细介绍了。
