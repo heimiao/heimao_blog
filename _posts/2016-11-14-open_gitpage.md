@@ -1,6 +1,6 @@
 ---
 
-layout: default
+layout: index
 title: "开通github的gitPage页面"
 
 ---
