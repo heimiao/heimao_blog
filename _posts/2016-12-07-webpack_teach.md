@@ -2,7 +2,7 @@
 
 layout: index
 
-title: "使用wepack搭建自己的react小程序"
+title: "使用wepack搭建自己的react小程序（一）"
 
 ---
 
