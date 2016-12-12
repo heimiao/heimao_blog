@@ -9,7 +9,7 @@ title: "使用wepack搭建自己的react小程序"
  本博客暂不支持评论模块，后期会努力加上，
 有问题讨论群如下
 QQ群：536286957
-## 使用wepack搭建自己的react小程序
+## 使用wepack搭建自己的react小程序（一）
 **前言：**前几天刚把jekyll这块看了下同时也把教程写下来放到了git上，预防自己忘记也给小白更多的机会练练手。今天就把我用webpack搭建项目的顺序一步一步道来。我相信走过这么一遭就对react了解的差不多了。
 
 **系统配置：**window7 64位系统，
@@ -514,4 +514,4 @@ excludeChunks: 允许跳过某些块，(比如，跳过单元测试的块)
 
 [了解更多html-webpack-plugin插件]("https://www.npmjs.com/package/html-webpack-plugin");
 
-说到这里用webpack打包一些静态的资源以及服务热部署都完事了，当然一个项目不仅仅依赖这些还有别的react-router路由转发,react-tranform热替换，immutable按需加载，等等。。都是我们以后会用到的。今天先暂时到这以后我会持续更新路由和redux以及我们的es6我也是一边学一边记。哪有错误还请原谅，
+说到这里用webpack打包一些静态的资源以及服务热部署都完事了，当然一个项目不仅仅依赖这些还有别的react-router路由转发,react-tranform热替换，immutable按需加载，等等。。都是我们以后会用到的。今天先暂时到这里，剩下的我会放到[使用wepack搭建自己的react小程序（二）]()当中做详细讲解
