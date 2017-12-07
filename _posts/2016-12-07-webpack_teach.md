@@ -2,14 +2,16 @@
 
 layout: index
 
-title: "使用wepack搭建自己的react小程序"
+title: "使用wepack搭建自己的react小程序（一）"
 
 ---
+ 
+## 使用wepack搭建自己的react小程序（一）
 
- 本博客暂不支持评论模块，后期会努力加上，
+本博客暂不支持评论模块，后期会努力加上，
 有问题讨论群如下
 QQ群：536286957
-## 使用wepack搭建自己的react小程序
+
 **前言：**前几天刚把jekyll这块看了下同时也把教程写下来放到了git上，预防自己忘记也给小白更多的机会练练手。今天就把我用webpack搭建项目的顺序一步一步道来。我相信走过这么一遭就对react了解的差不多了。
 
 **系统配置：**window7 64位系统，
@@ -28,6 +30,9 @@ QQ群：536286957
 在我们的react-webpack文件下会自动生成一个package.js文件，我们暂时不管这个文件，
 接下来我们再次输入安装webpack的命令，命令如下：
 	
+	//
+	npm install webpack -g	
+
 	npm install webpack --save-dev
 
 （PS:安装有可能报错，是由于国家的防火墙，没办法，自己翻墙或者通过国内景象安装。）
@@ -293,7 +298,7 @@ QQ群：536286957
 
 #### 1.6.webpack打包图片
 
-在app目录下新建image目录 app/image/，你随便找个图片放到app/image下，接下来我们要对这个目录下的图片进行打包。
+在app目录下新建images目录 app/images/，你随便找个图片放到app/images下，接下来我们要对这个目录下的图片进行打包。
 
 当然我们需要打包图片的话，要url-loader和file-loader这两个加载器，同样的办法，安装这两个loader到我们的本地项目作为依赖项执行命令：`npm install url-loader file-loader --save-dev`当我们把这两个loader安装完之后，打开我们的webpack.config.js配置项如下
 
@@ -355,7 +360,7 @@ QQ群：536286957
 	    }
 	｝
 
-当我们这一切做好之后，启动webpack编译，执行命令`webpack`你会发现你的build目录下新增一个image的文件包含了你的图片。这个时候启动我们的项目`npm run dev`你会发现我们的网页已经不再是天蓝色背景了，而是你引入的图片了。再次我们只是做了一css引用图片那我们的react应该怎么引用呢？
+当我们这一切做好之后，启动webpack编译，执行命令`webpack`你会发现你的build目录下新增一个image的文件包含了你的图片。这个时候启动我们的项目`npm run dev`你会发现我们的网页已经不再是天蓝色背景了，而是你引入的图片了。在此我们只是做了一css引用图片那我们的react应该怎么引用呢？
 
 #### 1.7.react中使用webpack打包的图片
 千呼万唤始出来，我们的react还半遮面。我们要使用react的话需要安装babel组件，所需babel命令如下
@@ -397,10 +402,7 @@ QQ群：536286957
 					'css?sourceMap!' +
 					'sass?sourceMap'
 				)
-			}, {
-				test: /\.(png|jpg)$/,
-				loader: 'url?limit=8192'
-			}, {
+			},{
 				test: /\.(png|jpg|gif)$/,
 				loader: 'url?limit=8192&name=images/[hash:8].[name].[ext]'
 			}]
@@ -514,4 +516,4 @@ excludeChunks: 允许跳过某些块，(比如，跳过单元测试的块)
 
 [了解更多html-webpack-plugin插件]("https://www.npmjs.com/package/html-webpack-plugin");
 
-好了说到这里用webpack打包一些静态的资源以及服务热部署都完事了，当然一个项目不仅仅依赖这些还有别的react-router路由转发,react-tranform热替换，immutable按需加载，等等。。都是我们以后会用到的。今天先暂时到这以后我会持续更新路由和redux以及我们的es6我也是一边学一边记。哪有错误还请原谅，
+说到这里用webpack打包一些静态的资源以及服务热部署都完事了，当然一个项目不仅仅依赖这些还有别的react-router路由转发,react-tranform热替换，immutable按需加载，等等。。都是我们以后会用到的。今天先暂时到这里，剩下的我会放到[使用wepack搭建自己的react小程序（二）]()当中做详细讲解
