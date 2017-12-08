@@ -1,0 +1,599 @@
+var baseUrl = "http://test.api.rtf365.com/";
+//var baseUrl = "http://test.api.rtf365.com/";
+
+var chatLog = "http://test.emchat.rtf365.com/service/emchat/logs/";
+//var chatLog = "http://test.emchat.rtf365.com/service/emchat/logs/";
+
+var baseImgUrl = "http://test.img.rtf365.com/";
+//var baseImgUrl = "http://test.img.rtf365.com/";
+var Config = {
+	//请求路径
+	getbaseUrl: baseUrl + '/zjzd/getBaseUrlList?lx=11',
+	path: {
+		//灵兰登录地址
+		loginUrl: baseUrl + "assistant/login",
+		//获取医生
+		getDoctor: baseUrl + "v1/auth/list/doctor?page=1&size=1000",
+		//获取病人 
+		getPatient: baseUrl + "v1/auth/list/patient?page=1&size=1000",
+		//获取医助
+		getAssistant: baseUrl + "v1/auth/list/assistant?page=1&size=100",
+		//医助会话列表
+		sessionAssistant: baseUrl + "v1/auth/assistant/chatlist",
+		//获取病例
+		getArchives: baseUrl + "v1/record/medical/list/",
+		//得到病人详细
+		getPatientInfo: baseUrl + "v1/auth/info/patient/",
+		//得到医生详细
+		getDoctorInfo: baseUrl + "v1/auth/info/doctor/",
+		//发送消息
+		sendMsg: baseUrl + "v1/auth/remind/msg/",
+
+	},
+
+	//系统默认设置项
+	sysSet: {
+		//是否更换背景
+		changeBg: "",
+		//是否取消声音
+		openVoice: true,
+		//是否显示头像
+		showHead: true,
+		//是否支持搜索
+		isSearch: true,
+		//清空本地缓存
+		clearCatch: true,
+		//是否同步聊天记录
+		asyncRecord: true,
+		//刷新是否登录
+		refreshLogin: false,
+		//是否记住密码
+		rememberPwd: true,
+		//是否打开浏览器通知（前提允许浏览器通知）
+		notificat: false,
+		//是否需要置顶新消息项
+		stickMsg: false,
+		//是否开启ctrl+enter发送消息
+		keySend: false,
+		//本地最多缓存时间(sm)
+		cacheMaxTime: 102366,
+		//最多缓存N+1天的聊天内容
+		cacheDuration: 3600,
+		//是否支持多语言
+		language: "en",
+		
+	},
+
+	//系统状态配置
+	sysValue: {}
+}
+var userList = [{
+	username: "uazanf8p59b8c941a7bf017c",
+	pwd: "86f9d0113111dc3bd9563537",
+	name: "医助",
+	count: "",
+	cked: true,
+	state: "",
+}, {
+	username: "                                                                                 ",
+	pwd: "0f6e850ca4001fb4c6538d28",
+	name: "医助一",
+	count: "1",
+	cked: false,
+	state: ""
+}];
+var dataSource = {
+	groupList: {
+		"status": 1,
+		"dtm": 1505982276,
+		"err": "",
+		"errcode": "",
+		"data": [{
+			"_id": "udzanf8p59c34a0a36b1eb7c",
+			"name": "安其拉",
+			"headurl": "",
+			"assistantEmchat": {
+				"username": "uazanf8p59b8c941a7bf017c",
+				"password": "86f9d0113111dc3bd9563537"
+			},
+			"patients": [{
+					"patient": {
+						"_id": "upzanf8p59c34a69d033ca60",
+						"name": "貂蝉",
+						"headurl": ""
+					},
+					"groupId": "27863281631233"
+				},
+				{
+					"patient": {
+						"_id": "upzanf8p59c352f5ce8c626c",
+						"name": "娜可露露",
+						"headurl": ""
+					},
+					"groupId": "27865863225346"
+				}
+			]
+		}, {
+			"_id": "udzanf8p59c34a0a36b1eb7d",
+			"name": "哆啦A梦",
+			"headurl": "",
+			"assistantEmchat": {
+				"username": "uazanf8p59c22a42abd91b66",
+				"password": "0f6e850ca4001fb4c6538d28"
+			},
+			"patients": [{
+					"patient": {
+						"_id": "upzanf8p59c34a69d033ca60",
+						"name": "大雄",
+						"headurl": ""
+					},
+					"groupId": "27863281631233"
+				},
+				{
+					"patient": {
+						"_id": "upzanf8p59c352f5ce8c626c",
+						"name": "小胖",
+						"headurl": ""
+					},
+					"groupId": "27865863225346"
+				}
+			]
+		}]
+
+	}
+}
+;
+window.indexedDB = window.indexedDB ||
+	window.mozIndexedDB ||
+	window.webkitIndexedDB ||
+	window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction ||
+	window.webkitIDBTransaction ||
+	window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange ||
+	window.webkitIDBKeyRange ||
+	window.msIDBKeyRange;
+(function(window, $, ng) {
+	'use strict';
+	var db = {
+		version: 1, // important: only use whole numbers!
+		objectStoreNameAry: ['linglanDB'],
+		instance: {},
+		upgrade: function(e) {
+			var _db = e.target.result,
+				names = _db.objectStoreNames,
+				nameAry = db.objectStoreNameAry;
+			for(var itme in nameAry) {
+				var store = _db.createObjectStore(
+					nameAry[itme], {
+						keyPath: 'index_id',
+						autoIncrement: true, //id自增
+						unique: true,
+					});
+				store.createIndex('newIdIndex', 'newId', {
+					unique: true
+				});
+				/*store.createIndex('indexId', 'index_id', {
+					unique: true
+				});*/
+			}
+		},
+		errorHandler: function(error) {
+			window.alert('error: ' + error.target.code);
+		},
+		open: function(callback) {
+			var request = window.indexedDB.open("fupin", db.version);
+			request.onerror = db.errorHandler;
+			request.onupgradeneeded = db.upgrade;
+			request.onsuccess = function(e) {
+				db.instance = request.result;
+				db.instance.onerror =
+					db.errorHandler;
+				callback();
+			};
+		},
+		getObjectStore: function(storeName, mode) {
+			var txn, store;
+			mode = mode || 'readonly';
+			txn = db.instance.transaction(storeName, mode);
+			store = txn.objectStore(storeName);
+			return store;
+		},
+		save: function(args) {
+			//var p = new Promise(function(resolve, reject) {});
+			db.open(function() {
+				var store, request,
+					mode = 'readwrite';
+				store = db.getObjectStore(args.rqstName, mode),
+					request = args.data.index_id ?
+					store.put(args.data) :
+					store.add(args.data);
+				request.onsuccess = args.success;
+				request.onerror = args.error;
+			})
+		},
+		getAll: function(args) {
+			var indexes = args.indexes || "linglanDB";
+			db.open(function() {
+				var store = db.getObjectStore(args.rqstName),
+					data = [];
+				var cursor = args.indexes ?
+					store.index(args.indexes).openCursor() :
+					store.openCursor();
+				cursor.onsuccess = function(e) {
+					var result = e.target.result;
+					if(result &&
+						result !== null) {
+						data.push(result.value);
+						result.continue();
+					} else {
+						args.success(data);
+					}
+				};
+				cursor.onerror = args.error;
+			});
+		},
+		getById: function(args) {
+			var id = parseInt(args.param.index_id);
+			db.open(function() {
+				var store = db.getObjectStore(args.rqstName),
+					request = store.get(id);
+				request.onsuccess = function(e) {
+					args.success(e.target.result);
+				};
+				request.onerror = args.error;
+			});
+		},
+		getByNewId: function(args) {
+			var id = args.param.newId,
+				data = [];
+			var indexes = args.indexes || "linglanDB";
+			db.open(function() {
+				var store = db.getObjectStore(args.rqstName),
+					//通过指定索引获取
+					cursor = store.index(indexes).openCursor(IDBKeyRange.only(id))
+				cursor.onsuccess = function(e) {
+					var result = e.target.result;
+					if(result && result !== null) {
+						data.push(result.value);
+						result.continue();
+					} else {
+						args.success(data);
+					}
+				};
+				cursor.onerror = args.error;
+			});
+
+		},
+		'delete': function(args) {
+			try {
+				var id = parseInt(args.param.index_id);
+				db.open(function() {
+					var
+						mode = 'readwrite',
+						store, request;
+					store = db.getObjectStore(args.rqstName, mode);
+					request = store.delete(id);
+					request.onsuccess = args.success;
+					request.onerror = args.error;
+				});
+			} catch(e) {
+				fupin.alert("删除失败，id必须为数字类型");
+			}
+		},
+
+		deleteAll: function(args) {
+			db.open(function() {
+				var mode, store, request;
+				mode = 'readwrite';
+				store = db.getObjectStore(args.rqstName, mode);
+				request = store.clear();
+				request.onsuccess = args.success;
+				request.onerror = args.error;
+			});
+		}
+	};
+	var config = {
+		"rqstName": "linglanDB", //'linglanDB'
+		"type": "", //select,delete,create,update,
+		"data": {},
+		'param': {},
+		'indexes': "",
+		"success": function() {},
+		'error': function() {},
+	}
+
+	var dt = {
+		//贫困户接口
+		request: function(data) {
+			try {
+				switch(data.type) {
+					case "delete":
+						try {
+							db.delete(data);
+						} catch(e) {
+							console.error("删除数据错误，请查看参数是否正确");
+						}
+						break;
+					case "put":
+						try {
+							db.save(data);
+						} catch(e) {
+							console.error("新增数据错误，请查看参数是否正确");
+						}
+						break;
+					case "select":
+						try {
+							db.getAll(data);
+						} catch(e) {
+							console.error("查询数据错误，请查看参数是否正确");
+						}
+						break;
+					case "selectById":
+						try {
+							db.getById(data);
+						} catch(e) {
+							console.error(e);
+							console.error("根据条件查询数据错误，请查看条件是否正确");
+						}
+						break;
+					case "selectByNewId":
+						try {
+							db.getByNewId(data);
+						} catch(e) {
+							console.error(e);
+							console.error("根据条件查询数据错误，请查看条件是否正确");
+						}
+						break;
+				}
+			} catch(e) {
+				console.error("参数type不能为空");
+			}
+		}
+	}
+	$.extend({
+		dt: dt
+	});
+	ng['dt'] = dt;
+	window.dt = dt || {};
+}(window, jQuery, angular));
+var myApp = angular.module("myApp", ['ui.router', 'ngCookies', 'ngFileUpload']);
+//配置路由
+myApp.config(["$httpProvider", "$stateProvider", "$urlRouterProvider", function($httpProvider, $stateProvider, $urlRouterProvider) {
+	//添加拦截器
+	$httpProvider.interceptors.push("myInterceptor");
+	//设置默认的加载模块
+	$urlRouterProvider.otherwise('/index');
+	$stateProvider
+		//贫困户列表
+		.state('index', {
+			url: '/index',
+			controller: "index-contro",
+			templateUrl: 'dist/template/index.html'
+		})
+		// 登录
+		.state('login', {
+			url: '/login',
+			controller: "login",
+			templateUrl: 'dist/template/login.html'
+		})
+}]);
+//类工具
+;
+(function(_w) {
+    'use strict';
+    //扩展数组原型
+    Array.prototype.remove = function(obj) {
+        var returnArray = [];
+        for (var i = 0; i < this.length; i++) {
+            if (i != obj) {
+                returnArray.push(this[i]);
+            }
+        }
+        return returnArray;
+    };
+    var dtwl = {
+
+    }
+    _w.dtwl = dtwl || {};
+}(window))
+//拦截器服务
+myApp.factory('myInterceptor', ["$q", "$cookies", "$cookieStore", function($q, $cookies, $cookieStore) {
+	return {
+		// 可选，拦截成功的请求
+		request: function(config) {
+			// 进行预处理
+			/*	if(typeof($cookieStore.get("cookie")) == "string") {
+					console.log("拦截到的是字符串");
+				} else*/
+			config.headers.inter_type = "h5";
+			if(localStorage.getItem("token")) {
+				config.headers = config.headers || {};
+				config.headers.token = localStorage.getItem("token");
+			}
+			return config || $q.when(config);
+		},
+		// 可选，拦截失败的请求
+		requestError: function(rejection) {
+			// 对失败的请求进行处理
+			// ...
+			if(canRecover(rejection)) {
+				return responseOrNewPromise
+			}
+			return $q.reject(rejection);
+		},
+		// 可选，拦截成功的响应
+		response: function(response) {
+			// 进行预处理
+			try {
+				if(response.data.message == 1001 || response.data.message == 1002 || response.data.message == 1003) {
+					localStorage.token = ""
+					location.href = "./"
+				}
+			} catch(e) {}
+			return response || $q.when(reponse);
+		},
+		// 可选，拦截失败的响应
+		responseError: function(rejection) {
+			// 对失败的响应进行处理
+			// ...
+			if(rejection.status == 401) {
+				console.log("Access denied (error 401), please login again");
+				$location.path('#/login');
+			}
+			return $q.reject(rejection);
+		}
+	};
+}]);
+
+//保存服务
+myApp.factory("postForm",
+	["$http", function($http) {
+		return {
+			saveFrm: function(url, data) {
+				return $http.post(url, data, {
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+					},
+					transformRequest: function(request) {
+						return $.param(request);
+					}
+				});
+			}
+		};
+	}]);
+//开始时间
+myApp.directive('dropdownDirective', function() {
+	return {
+		restrict: 'AEMC',
+		scope: {
+			myModel: '=',
+			timeStyle: '@',
+			first: "@",
+			second: "@"
+		},
+		// replace: true ,
+		//template: "<input type='text' ng-model='myModel' value={{myModel}} id={{first}} data-other={{second}} data-type={{timeStyle}}>",
+		link: function(scope, element, attr) {
+			$(element).find(".dropdown-toggle").click(function() {
+				$(element).find(".dropdown-menu").slideToggle();
+			})
+		}
+	};
+});
+myApp.directive('tabDirective', function() {
+	return {
+		restrict: 'AEMC',
+		scope: {
+			myModel: '=',
+			first: "@",
+			placeholder: '@',
+			second: "@"
+		},
+		//		template: "<input type='text' ng-model='myModel' value={{myModel}} id={{second}} data-other={{first}} placeholder={{placeholder}}>",
+		link: function(scope, element, attr) {
+			$(element).find(".nav-tab li").click(function() {
+				$(".nav-tab li").removeClass("active");
+				$(element).find(".tab-pane").removeClass("active");
+				$(this).addClass("active");
+				$(element).find(".tab-pane").eq($(this).index()).addClass("active");
+			})
+		}
+	};
+});
+
+myApp.directive('recordDirective', function() {
+	return {
+		restrict: 'AEMC',
+		scope: {
+			myModel: '=',
+			first: "@",
+			placeholder: '@',
+			second: "@"
+		},
+		//		template: "<input type='text' ng-model='myModel' value={{myModel}} id={{second}} data-other={{first}} placeholder={{placeholder}}>",
+		link: function(scope, element, attr) {
+			$(element).find(".RecordBtn").click(function() {
+				$(element).find(".chatRecord").toggleClass("show")
+			})
+		}
+	};
+});
+
+myApp.directive('alertBar', [function() {
+	return {
+		restrict: 'EA',
+		//		templateUrl: '../template/component/alertBar.html',
+		template: '<div class="alert alert-{{type || \'info\'}} ngTip" ng-show="message">' +
+			'<button type="button" class="close"  ng-click="hideAlert()">' +
+			'<span class="glyphicon glyphicon-remove"></span></button> {{message}}</div>',
+		scope: {
+			message: "=",
+			type: "="
+		},
+		link: function(scope, element, attrs) {
+			scope.hideAlert = function() {
+				scope.message = null;
+				scope.type = null;
+			};
+
+		}
+	};
+}]);
+myApp.run(["$rootScope", "TipService", function($rootScope, TipService) {
+	$rootScope.tipService = TipService;
+}]);
+myApp.factory('TipService', ['$timeout', function($timeout) {
+	return {
+		message: null,
+		type: null,
+		setMessage: function(msg, type) {
+			this.message = msg;
+			this.type = type;
+
+			//提示框显示最多3秒消失
+			var _self = this;
+			$timeout(function() {
+				_self.clear();
+			}, 3000);
+		},
+		clear: function() {
+			this.message = null;
+			this.type = null;
+		}
+	};
+}]);
+
+
+myApp.controller("index-contro", ["$scope", "$rootScope", "$state", "$http", "$stateParams",
+	function($scope, $rootScope, $state, $http, $stateParams) {
+		var baseInfo = baseInfo || {};
+		 
+		//根据角色遍历响应的菜单
+		$scope.baseInfo = baseInfo;
+	}
+]);
+myApp.controller("login", ["$scope", "$rootScope", "$state", "$http", "$stateParams", "TipService",
+	function($scope, $rootScope, $state, $http, $stateParams, TipService) {
+		var login = login || {};
+		login.userInfo = login.userInfo || {};
+		login.submitForm = function() {
+			$http.post(Config.path.loginUrl, login.userInfo).then(function(data) {
+				//把登陆之后获取的信息放到前台
+				if(data.status == "1") {
+					$cookieStore.put("cookie", {
+						"token": data.data.userAuthorization.value,
+						"userId": data.data.userId
+					}, {
+						"expires": -1 //new Date(new Date().getTime() + 5000)
+					});
+					window.location.href = "#/home";
+				} else {
+					//info,success,warning danger
+					TipService.setMessage('登录失败', 'danger');
+				}
+			});
+		}
+		$scope.login = login;
+	}
+]);

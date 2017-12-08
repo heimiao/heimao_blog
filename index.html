@@ -18,11 +18,14 @@ title : "我是主页"
 			<a href="https://github.com/heimiao/heimao_blog/tarball/master" class="btn">Download .tar.gz</a>
 			---->
 		</section>
-		<section class="main-content"> 
-
+		<section class="main-content">  
 			<body>
 				<div class="cont">
 					<ul>
+						<li>
+							<a href="{{site.url}}/static/index.html">======起跑线====</a>
+							<hr>
+						</li> 
 						{% for post in site.posts %}
 						<li>
 							<a href="{{site.url}}{{post.url}}">{{post.date|date_to_string}} {{post.title}}{{page.date}}</a>
