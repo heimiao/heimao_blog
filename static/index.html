@@ -133,14 +133,11 @@
 				<div class="type">
 					<a href="http://192.168.0.102:3000/">教育分类</a>
 					<ul>
-						<li>
+						<!-- ngRepeat: item in qpx.menu --><li ng-repeat="item in qpx.menu" class="ng-scope">
 							<dl>
-								<dt>艺术,兴趣</dt>
+								<dt ng-bind="item.cdmc" class="ng-binding">艺术，兴趣</dt>
 								<dd>
-									<a href="http://192.168.0.102:3000/">美术</a>
-									<a href="http://192.168.0.102:3000/">画画</a>
-									<a href="http://192.168.0.102:3000/">音乐</a>
-									<img src="http://192.168.0.102:3000/">
+									<!-- ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">美术</a><!-- end ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">音乐</a><!-- end ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">舞蹈</a><!-- end ngRepeat: childItem in item.childPart -->
 								</dd>
 							</dl>
 							<div class="dorpDown">
@@ -181,14 +178,11 @@
 									</li>
 								</ul>
 							</div>
-						</li>
-						<li>
+						</li><!-- end ngRepeat: item in qpx.menu --><li ng-repeat="item in qpx.menu" class="ng-scope">
 							<dl>
-								<dt>学前,小学</dt>
+								<dt ng-bind="item.cdmc" class="ng-binding">学前，小学</dt>
 								<dd>
-									<a href="http://192.168.0.102:3000/">早教</a>
-									<a href="http://192.168.0.102:3000/">英语</a>
-									<a href="http://192.168.0.102:3000/">奥数</a>
+									<!-- ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">早教</a><!-- end ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">英语</a><!-- end ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">奥数</a><!-- end ngRepeat: childItem in item.childPart -->
 								</dd>
 							</dl>
 							<div class="dorpDown">
@@ -226,6 +220,99 @@
 										</div>
 										<div class="clearfix"> </div>
 										<hr>
+									</li>
+								</ul>
+							</div>
+						</li><!-- end ngRepeat: item in qpx.menu --><li ng-repeat="item in qpx.menu" class="ng-scope">
+							<dl>
+								<dt ng-bind="item.cdmc" class="ng-binding">初中，高中</dt>
+								<dd>
+									<!-- ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">初中语文</a><!-- end ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">初中数学</a><!-- end ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">高中语文</a><!-- end ngRepeat: childItem in item.childPart --><a ng-repeat="childItem in item.childPart" href="http://192.168.0.102:3000/" ng-bind="childItem.cdmc" class="ng-binding ng-scope">高中数学</a><!-- end ngRepeat: childItem in item.childPart -->
+								</dd>
+							</dl>
+							<div class="dorpDown">
+								<ul>
+									<li>
+										<div class="course left">
+											<a href="http://192.168.0.102:3000/">美术</a>
+										</div>
+										<div class="schoolList left">
+											<a href="http://192.168.0.102:3000/">韩荣光小学</a>
+											<a href="http://192.168.0.102:3000/">临漳一中</a>
+											<a href="http://192.168.0.102:3000/">邯郸二中</a>
+											<a href="http://192.168.0.102:3000/">河北工程大学</a>
+											<a href="http://192.168.0.102:3000/">河北工程大学</a>
+											<a href="http://192.168.0.102:3000/">河北工程大学</a>
+											<a href="http://192.168.0.102:3000/">河北工程大学</a>
+											<a href="http://192.168.0.102:3000/">河北工程大学</a>
+										</div>
+										<div class="clearfix"> </div>
+										<hr>
+									</li>
+									<li>
+										<div class="course left">
+											<a href="http://192.168.0.102:3000/">兴趣</a>
+										</div>
+										<div class="schoolList left">
+											<a href="http://192.168.0.102:3000/">韩荣光小学</a>
+											<a href="http://192.168.0.102:3000/">临漳一中</a>
+											<a href="http://192.168.0.102:3000/">邯郸二中</a>
+											<a href="http://192.168.0.102:3000/">河北工程</a>
+											<a href="http://192.168.0.102:3000/">河北工程大学</a>
+											<a href="http://192.168.0.102:3000/">河北工程大学</a>
+											<a href="http://192.168.0.102:3000/">河北工程大学</a>
+											<a href="http://192.168.0.102:3000/">河北工程大学</a>
+										</div>
+										<div class="clearfix"> </div>
+										<hr>
+									</li>
+								</ul>
+							</div>
+						</li><!-- end ngRepeat: item in qpx.menu -->
+						<!--<li>
+							<dl>
+								<dt>学前,小学</dt>
+								<dd>
+									<a href="">早教</a>
+									<a href="">英语</a>
+									<a href="">奥数</a>
+								</dd>
+							</dl>
+							<div class="dorpDown">
+								<ul>
+									<li>
+										<div class="course left">
+											<a href="">美术</a>
+										</div>
+										<div class="schoolList left">
+											<a href="">韩荣光小学</a>
+											<a href="">临漳一中</a>
+											<a href="">邯郸二中</a>
+											<a href="">河北工程大学</a>
+											<a href="">河北工程大学</a>
+											<a href="">河北工程大学</a>
+											<a href="">河北工程大学</a>
+											<a href="">河北工程大学</a>
+										</div>
+										<div class="clearfix"> </div>
+										<hr />
+									</li>
+									<li>
+										<div class="course left">
+											<a href="">兴趣</a>
+										</div>
+										<div class="schoolList left">
+											<a href="">韩荣光小学</a>
+											<a href="">临漳一中</a>
+											<a href="">邯郸二中</a>
+											<a href="">河北工程</a>
+											<a href="">河北工程大学</a>
+											<a href="">河北工程大学</a>
+											<a href="">河北工程大学</a>
+											<a href="">河北工程大学</a>
+										</div>
+										<div class="clearfix"> </div>
+										<hr />
 									</li>
 								</ul>
 							</div>
@@ -234,11 +321,11 @@
 							<dl>
 								<dt>初中,高中</dt>
 								<dd>
-									<a href="http://192.168.0.102:3000/">初中辅导</a>
-									<a href="http://192.168.0.102:3000/">高中辅导</a>
+									<a href="">初中辅导</a>
+									<a href="">高中辅导</a>
 								</dd>
 							</dl>
-						</li>
+						</li>-->
 					</ul>
 				</div>
 			</div>

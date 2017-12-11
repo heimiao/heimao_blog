@@ -1,4 +1,4 @@
-var baseUrl = "http://test.api.rtf365.com/";
+var baseUrl = "http://116.196.113.237:8080/";
 //var baseUrl = "http://test.api.rtf365.com/";
 
 var chatLog = "http://test.emchat.rtf365.com/service/emchat/logs/";
@@ -13,7 +13,7 @@ var Config = {
 		//灵兰登录地址
 		loginUrl: baseUrl + "assistant/login",
 		//获取医生
-		getDoctor: baseUrl + "v1/auth/list/doctor?page=1&size=1000",
+		menu: baseUrl + "rest/menu/getMenuList",
 		//获取病人 
 		getPatient: baseUrl + "v1/auth/list/patient?page=1&size=1000",
 		//获取医助
@@ -406,7 +406,6 @@ myApp.factory('myInterceptor', ["$q", "$cookies", "$cookieStore", function($q, $
 			/*	if(typeof($cookieStore.get("cookie")) == "string") {
 					console.log("拦截到的是字符串");
 				} else*/
-			config.headers.inter_type = "h5";
 			if(localStorage.getItem("token")) {
 				config.headers = config.headers || {};
 				config.headers.token = localStorage.getItem("token");
@@ -567,33 +566,47 @@ myApp.factory('TipService', ['$timeout', function($timeout) {
 
 myApp.controller("index-contro", ["$scope", "$rootScope", "$state", "$http", "$stateParams",
 	function($scope, $rootScope, $state, $http, $stateParams) {
-		var baseInfo = baseInfo || {};
-		 
-		//根据角色遍历响应的菜单
-		$scope.baseInfo = baseInfo;
+		var qpx = qpx || {};
+		qpx.menu = [];
+
+		$http.get(Config.path.menu).then(function(args) {
+				qpx.menu = args.data;
+			})
+			//根据角色遍历响应的菜单
+		$scope.qpx = qpx;
 	}
 ]);
 myApp.controller("login", ["$scope", "$rootScope", "$state", "$http", "$stateParams", "TipService",
 	function($scope, $rootScope, $state, $http, $stateParams, TipService) {
 		var login = login || {};
 		login.userInfo = login.userInfo || {};
-		login.submitForm = function() {
-			$http.post(Config.path.loginUrl, login.userInfo).then(function(data) {
-				//把登陆之后获取的信息放到前台
-				if(data.status == "1") {
-					$cookieStore.put("cookie", {
-						"token": data.data.userAuthorization.value,
-						"userId": data.data.userId
-					}, {
-						"expires": -1 //new Date(new Date().getTime() + 5000)
-					});
-					window.location.href = "#/home";
-				} else {
-					//info,success,warning danger
-					TipService.setMessage('登录失败', 'danger');
-				}
-			});
-		}
-		$scope.login = login;
+
+		sourceList = [{
+			name: "文综(选修课)",
+			iscke: false,
+			courseAry: [
+				"历史",
+				"地理",
+				"政治"
+			]
+		}, {
+			name: "理综(选修课)",
+			iscke: false,
+			courseAry: [
+				"生物",
+				"化学",
+				"物理"
+			]
+		}, {
+			name: "主科目(必修课)",
+			iscke: true,
+			courseAry: [
+				"语文",
+				"数学",
+				"英语"
+			]
+		}];
+
+		$scope.sourceList = sourceList;
 	}
 ]);
