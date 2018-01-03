@@ -4,7 +4,7 @@ webpackJsonp([0],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Range; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Radio; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -18,23 +18,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var Range = (function () {
-    function Range(navCtrl, alertCtrl) {
+var Radio = (function () {
+    function Radio(navCtrl, alertCtrl) {
         this.navCtrl = navCtrl;
         this.alertCtrl = alertCtrl;
+        this.isDisabled = true;
     }
-    Range = __decorate([
+    Radio = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'range',
-            template: " \n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u6ED1\u5757(range)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content> \n\t\t\n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t     \u57FA\u672C\u4F7F\u7528\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t\t\t  <ion-list>\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-range [(ngModel)]=\"singleValue\" color=\"danger\" pin=\"true\"></ion-range>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-range min=\"-200\" max=\"200\" [(ngModel)]=\"saturation\" color=\"secondary\">\n\t\t\t\t\t\t      <ion-label range-left>-200</ion-label>\n\t\t\t\t\t\t      <ion-label range-right>200</ion-label>\n\t\t\t\t\t\t    </ion-range>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t <ion-item>\n\t\t\t\t\t\t   <ion-range min=\"20\" max=\"80\" step=\"2\" [(ngModel)]=\"brightness\">\n\t\t\t\t\t\t     <ion-icon small range-left name=\"sunny\"></ion-icon>\n\t\t\t\t\t\t     <ion-icon range-right name=\"sunny\"></ion-icon>\n\t\t\t\t\t\t   </ion-range>\n\t\t\t\t\t\t </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>step=100, snaps, </ion-label>\n\t\t\t\t\t\t    <ion-range min=\"1000\" max=\"2000\" step=\"100\" snaps=\"true\" color=\"secondary\" [(ngModel)]=\"singleValue4\"></ion-range>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>dual, step=3, snaps, </ion-label>\n\t\t\t\t\t\t    <ion-range dualKnobs=\"true\" [(ngModel)]=\"dualValue2\" min=\"21\" max=\"72\" step=\"3\" snaps=\"true\"></ion-range>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t</ion-list>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#badges\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t</ion-content>\n\t",
+            selector: 'radio',
+            template: " \n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u5355\u9009(radio)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content padding>  \n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t    \u5355\u9009\u6309\u94AE\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t  {{relationship|json}}\n\t\t\t \t <ion-list radio-group [(ngModel)]=\"relationship\">\n\t\t\t\t\t  <ion-item>\n\t\t\t\t\t    <ion-label>Friends</ion-label>\n\t\t\t\t\t    <ion-radio value=\"friends\" checked></ion-radio>\n\t\t\t\t\t  </ion-item>\n\t\t\t\t\t  <ion-item>\n\t\t\t\t\t    <ion-label>Family</ion-label>\n\t\t\t\t\t    <ion-radio value=\"family\"></ion-radio>\n\t\t\t\t\t  </ion-item>\n\t\t\t\t\t  <ion-item>\n\t\t\t\t\t    <ion-label>Enemies</ion-label>\n\t\t\t\t\t    <ion-radio value=\"enemies\" [disabled]=\"isDisabled\"></ion-radio>\n\t\t\t\t\t  </ion-item>\n\t\t\t\t\t</ion-list>\n\t\t\t\t\t \n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/api/components/radio/RadioButton/\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t    \u5355\u9009\u7EC4\u5408\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t  {{autoManufacturers|json}}\n\t\t\t \t <ion-list radio-group [(ngModel)]=\"autoManufacturers\">\n\t\t\t\t  <ion-list-header>\n\t\t\t\t    Auto Manufacturers\n\t\t\t\t  </ion-list-header>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Cord</ion-label>\n\t\t\t\t    <ion-radio value=\"cord\"></ion-radio>\n\t\t\t\t  </ion-item>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Duesenberg</ion-label>\n\t\t\t\t    <ion-radio value=\"duesenberg\"></ion-radio>\n\t\t\t\t  </ion-item>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Hudson</ion-label>\n\t\t\t\t    <ion-radio value=\"hudson\"></ion-radio>\n\t\t\t\t  </ion-item>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Packard</ion-label>\n\t\t\t\t    <ion-radio value=\"packard\"></ion-radio>\n\t\t\t\t  </ion-item>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Studebaker</ion-label>\n\t\t\t\t    <ion-radio value=\"studebaker\"></ion-radio>\n\t\t\t\t  </ion-item> \n\t\t\t\t</ion-list>\n\t\t\t\t\t \n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/api/components/radio/RadioButton/\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t</ion-content>\n\t",
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
-    ], Range);
-    return Range;
+    ], Radio);
+    return Radio;
 }());
 
-//# sourceMappingURL=range.js.map
+//# sourceMappingURL=radio.js.map
 
 /***/ }),
 
@@ -135,7 +136,7 @@ var ModalsProfile = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__menu_menu__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__head_footer_head_footer__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__action_sheet_action_sheet__ = __webpack_require__(211);
@@ -155,15 +156,15 @@ var ModalsProfile = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_modals__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__navigation_navigation__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__popover_popover__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__radio_radio__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__range_range__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__radio_radio__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__range_range__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__searchbar_searchbar__ = __webpack_require__(228);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__segment_segment__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__select_select__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__slides_slides__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__toast_toast__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__toggle_toggle__ = __webpack_require__(312);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__toolbar_toolbar__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__toast_toast__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__toggle_toggle__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__toolbar_toolbar__ = __webpack_require__(234);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -311,10 +312,11 @@ var HomePage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"E:\mytest\angular\ionic\myionic\src\pages\home\home.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>组件列表</ion-title>\n	</ion-navbar>\n</ion-header>\n<ion-content>\n	<ion-item-group *ngFor="let item of items">\n		<ion-item-divider color="light">{{item.name}}</ion-item-divider>\n		<ion-item *ngFor="let childItem of item.childAry" (click)="routerLink(childItem)">{{childItem.title}}</ion-item>\n	</ion-item-group>\n</ion-content>'/*ion-inline-end:"E:\mytest\angular\ionic\myionic\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_system__["a" /* SystemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_system__["a" /* SystemService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
+            __WEBPACK_IMPORTED_MODULE_2__service_system__["a" /* SystemService */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -403,7 +405,7 @@ var TabsPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lists_lists__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__radio_radio__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__radio_radio__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__navigation_navigation__ = __webpack_require__(102);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -438,12 +440,11 @@ var AboutPage = (function () {
     };
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-about',template:/*ion-inline-start:"E:\mytest\angular\ionic\myionic\src\pages\about\about.html"*/'<style type="text/css">\n	.container {\n		position: relative;\n		min-height: 400px;\n	}\n	\n	.tabs-ios .tabbar {\n		opacity: 1;\n	}\n</style>\n<ion-header>\n	<ion-navbar>\n		<ion-title>\n			选项卡(tab)\n		</ion-title>\n	</ion-navbar>\n</ion-header>\n<ion-content padding>\n	<p>\n		tab这个组件贯穿整个demo，所以我单独把tab放到tab下的一个选项卡下，来进行介绍。也省的我去创建一个新的组件\n	</p>\n\n	<ion-card>\n		<ion-card-header>\n			基本使用（纯文本）\n		</ion-card-header>\n		<ion-card-content class="container">\n			<a class="more" href="https://ionicframework.com/docs/api/components/tabs/Tab/">参数传递API</a>\n			<ion-tabs>\n				<ion-tab [root]="radios" tabTitle="轮播"></ion-tab>\n				<ion-tab [root]="liebiao" tabTitle="列表"></ion-tab>\n				<ion-tab [root]="daohang" tabTitle="导航"></ion-tab>\n			</ion-tabs>\n		</ion-card-content>\n	</ion-card>\n\n	<ion-card>\n		<ion-card-header>\n			图标\n		</ion-card-header>\n		<ion-card-content class="container">\n			<a class="more" href="https://ionicframework.com/docs/api/components/tabs/Tab/">更多信息</a>\n			<ion-tabs>\n				<ion-tab tabIcon="radios" [root]="tab1"></ion-tab>\n				<ion-tab tabIcon="liebiao" [root]="tab2"></ion-tab>\n				<ion-tab tabIcon="daohang" [root]="tab3"></ion-tab>\n			</ion-tabs>\n		</ion-card-content>\n	</ion-card>\n\n	<ion-card>\n		<ion-card-header>\n			文本和图标混排\n		</ion-card-header>\n		<ion-card-content class="container">\n			<a class="more" href="https://ionicframework.com/docs/api/components/tabs/Tab/">更多信息</a>\n			<ion-tabs>\n				<ion-tab [root]="radios" tabTitle="轮播" tabIcon="contact"></ion-tab>\n				<ion-tab [root]="liebiao" tabTitle="列表" tabIcon="analytics"></ion-tab>\n				<ion-tab [root]="daohang" tabTitle="导航" tabIcon="settings"></ion-tab>\n			</ion-tabs>\n		</ion-card-content>\n	</ion-card>\n\n	<ion-card>\n		<ion-card-header>\n			带有徽章的图文混排\n		</ion-card-header>\n		<ion-card-content class="container">\n			<a class="more" href="https://ionicframework.com/docs/api/components/tabs/Tab/">更多信息</a>\n			<ion-tabs>\n				<ion-tab [root]="radios" tabTitle="轮播" tabBadge="3" tabIcon="contact"></ion-tab>\n				<ion-tab [root]="liebiao" tabTitle="列表" tabBadge="14" tabIcon="analytics"></ion-tab>\n				<ion-tab [root]="daohang" tabTitle="导航" tabIcon="settings"></ion-tab>\n			</ion-tabs>\n		</ion-card-content>\n	</ion-card>\n</ion-content>'/*ion-inline-end:"E:\mytest\angular\ionic\myionic\src\pages\about\about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"E:\mytest\angular\ionic\myionic\src\pages\about\about.html"*/'<style type="text/css">\n	.container {\n		position: relative;\n		min-height: 400px;\n	}\n	\n	.tabs-ios .tabbar {\n		opacity: 1;\n	}\n</style>\n<ion-header>\n	<ion-navbar>\n		<ion-title>\n			选项卡(tab)\n		</ion-title>\n	</ion-navbar>\n</ion-header>\n<ion-content padding>\n	<p>\n		tab这个组件贯穿整个demo，所以我单独把tab放到tab下的一个选项卡下，来进行介绍。也省的我去创建一个新的组件\n	</p>\n\n	<ion-card>\n		<ion-card-header>\n			基本使用（纯文本）\n		</ion-card-header>\n		<ion-card-content class="container">\n			<a class="more" href="https://ionicframework.com/docs/api/components/tabs/Tab/">参数传递API</a>\n			<ion-tabs>\n				<ion-tab [root]="radios" tabTitle="轮播"></ion-tab>\n				<ion-tab [root]="liebiao" tabTitle="列表"></ion-tab>\n				<ion-tab [root]="daohang" tabTitle="导航"></ion-tab>\n			</ion-tabs>\n		</ion-card-content>\n	</ion-card>\n\n	<ion-card>\n		<ion-card-header>\n			图标\n		</ion-card-header>\n		<ion-card-content class="container">\n			<a class="more" href="https://ionicframework.com/docs/api/components/tabs/Tab/">更多信息</a>\n			<ion-tabs>\n				<ion-tab tabIcon="radios" [root]="radios"></ion-tab>\n				<ion-tab tabIcon="liebiao" [root]="liebiao"></ion-tab>\n				<ion-tab tabIcon="daohang" [root]="daohang"></ion-tab>\n			</ion-tabs>\n		</ion-card-content>\n	</ion-card>\n\n	<ion-card>\n		<ion-card-header>\n			文本和图标混排\n		</ion-card-header>\n		<ion-card-content class="container">\n			<a class="more" href="https://ionicframework.com/docs/api/components/tabs/Tab/">更多信息</a>\n			<ion-tabs>\n				<ion-tab [root]="radios" tabTitle="轮播" tabIcon="contact"></ion-tab>\n				<ion-tab [root]="liebiao" tabTitle="列表" tabIcon="analytics"></ion-tab>\n				<ion-tab [root]="daohang" tabTitle="导航" tabIcon="settings"></ion-tab>\n			</ion-tabs>\n		</ion-card-content>\n	</ion-card>\n\n	<ion-card>\n		<ion-card-header>\n			带有徽章的图文混排\n		</ion-card-header>\n		<ion-card-content class="container">\n			<a class="more" href="https://ionicframework.com/docs/api/components/tabs/Tab/">更多信息</a>\n			<ion-tabs>\n				<ion-tab [root]="radios" tabTitle="轮播" tabBadge="3" tabIcon="contact"></ion-tab>\n				<ion-tab [root]="liebiao" tabTitle="列表" tabBadge="14" tabIcon="analytics"></ion-tab>\n				<ion-tab [root]="daohang" tabTitle="导航" tabIcon="settings"></ion-tab>\n			</ion-tabs>\n		</ion-card-content>\n	</ion-card>\n</ion-content>'/*ion-inline-end:"E:\mytest\angular\ionic\myionic\src\pages\about\about.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]])
     ], AboutPage);
     return AboutPage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=about.js.map
@@ -1581,7 +1582,7 @@ var PopoverPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Radio; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Range; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1595,24 +1596,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var Radio = (function () {
-    function Radio(navCtrl, alertCtrl) {
+var Range = (function () {
+    function Range(navCtrl, alertCtrl) {
         this.navCtrl = navCtrl;
         this.alertCtrl = alertCtrl;
-        this.isDisabled = true;
     }
-    Radio = __decorate([
+    Range = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'radio',
-            template: " \n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u5355\u9009(radio)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content padding>  \n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t    \u5355\u9009\u6309\u94AE\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t  {{relationship|json}}\n\t\t\t \t <ion-list radio-group [(ngModel)]=\"relationship\">\n\t\t\t\t\t  <ion-item>\n\t\t\t\t\t    <ion-label>Friends</ion-label>\n\t\t\t\t\t    <ion-radio value=\"friends\" checked></ion-radio>\n\t\t\t\t\t  </ion-item>\n\t\t\t\t\t  <ion-item>\n\t\t\t\t\t    <ion-label>Family</ion-label>\n\t\t\t\t\t    <ion-radio value=\"family\"></ion-radio>\n\t\t\t\t\t  </ion-item>\n\t\t\t\t\t  <ion-item>\n\t\t\t\t\t    <ion-label>Enemies</ion-label>\n\t\t\t\t\t    <ion-radio value=\"enemies\" [disabled]=\"isDisabled\"></ion-radio>\n\t\t\t\t\t  </ion-item>\n\t\t\t\t\t</ion-list>\n\t\t\t\t\t \n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/api/components/radio/RadioButton/\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t    \u5355\u9009\u7EC4\u5408\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t  {{autoManufacturers|json}}\n\t\t\t \t <ion-list radio-group [(ngModel)]=\"autoManufacturers\">\n\t\t\t\t  <ion-list-header>\n\t\t\t\t    Auto Manufacturers\n\t\t\t\t  </ion-list-header>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Cord</ion-label>\n\t\t\t\t    <ion-radio value=\"cord\"></ion-radio>\n\t\t\t\t  </ion-item>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Duesenberg</ion-label>\n\t\t\t\t    <ion-radio value=\"duesenberg\"></ion-radio>\n\t\t\t\t  </ion-item>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Hudson</ion-label>\n\t\t\t\t    <ion-radio value=\"hudson\"></ion-radio>\n\t\t\t\t  </ion-item>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Packard</ion-label>\n\t\t\t\t    <ion-radio value=\"packard\"></ion-radio>\n\t\t\t\t  </ion-item>\n\t\t\t\t  <ion-item>\n\t\t\t\t    <ion-label>Studebaker</ion-label>\n\t\t\t\t    <ion-radio value=\"studebaker\"></ion-radio>\n\t\t\t\t  </ion-item> \n\t\t\t\t</ion-list>\n\t\t\t\t\t \n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/api/components/radio/RadioButton/\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t</ion-content>\n\t",
+            selector: 'range',
+            template: " \n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u6ED1\u5757(range)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content> \n\t\t\n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t     \u57FA\u672C\u4F7F\u7528\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t\t\t  <ion-list>\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-range [(ngModel)]=\"singleValue\" color=\"danger\" pin=\"true\"></ion-range>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-range min=\"-200\" max=\"200\" [(ngModel)]=\"saturation\" color=\"secondary\">\n\t\t\t\t\t\t      <ion-label range-left>-200</ion-label>\n\t\t\t\t\t\t      <ion-label range-right>200</ion-label>\n\t\t\t\t\t\t    </ion-range>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t <ion-item>\n\t\t\t\t\t\t   <ion-range min=\"20\" max=\"80\" step=\"2\" [(ngModel)]=\"brightness\">\n\t\t\t\t\t\t     <ion-icon small range-left name=\"sunny\"></ion-icon>\n\t\t\t\t\t\t     <ion-icon range-right name=\"sunny\"></ion-icon>\n\t\t\t\t\t\t   </ion-range>\n\t\t\t\t\t\t </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>step=100, snaps, </ion-label>\n\t\t\t\t\t\t    <ion-range min=\"1000\" max=\"2000\" step=\"100\" snaps=\"true\" color=\"secondary\" [(ngModel)]=\"singleValue4\"></ion-range>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>dual, step=3, snaps, </ion-label>\n\t\t\t\t\t\t    <ion-range dualKnobs=\"true\" [(ngModel)]=\"dualValue2\" min=\"21\" max=\"72\" step=\"3\" snaps=\"true\"></ion-range>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t</ion-list>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#badges\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t</ion-content>\n\t",
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
-    ], Radio);
-    return Radio;
+    ], Range);
+    return Range;
 }());
 
-//# sourceMappingURL=radio.js.map
+//# sourceMappingURL=range.js.map
 
 /***/ }),
 
@@ -1623,7 +1623,7 @@ var Radio = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Searchbar; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1686,7 +1686,7 @@ var Searchbar = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_system__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_system__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1752,7 +1752,7 @@ var Segment = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Selects; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1875,9 +1875,160 @@ var Slide = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Toast; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var Toast = (function () {
+    function Toast(navCtrl, alertCtrl, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
+    }
+    Toast.prototype.presentToast = function (args) {
+        var toast = this.toastCtrl.create({
+            message: '测试提示信息显示',
+            duration: 3000,
+            position: args || "bottom"
+        });
+        toast.onDidDismiss(function () {
+            console.log('监听关闭方法');
+        });
+        toast.present();
+    };
+    Toast = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'toast',
+            template: " \n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u63D0\u793A\u6846(toast)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content padding> \n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u57FA\u672C\u4F7F\u7528\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t\t\t <button ion-button full (click)=\"presentToast('bottom')\">\u5E95\u90E8\u5F39\u51FA</button>\n\t\t\t\t\t<button ion-button color=\"secondary\" full (click)=\"presentToast('top')\">\u9876\u90E8\u5F39\u51FA</button>\n\t\t\t\t\t<button ion-button color=\"danger\" full (click)=\"presentToast('middle')\">\u4E2D\u95F4\u5F39\u51FA</button>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/api/components/toast/ToastController/\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t</ion-content>\n\t",
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]])
+    ], Toast);
+    return Toast;
+}());
+
+//# sourceMappingURL=toast.js.map
+
+/***/ }),
+
+/***/ 233:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Toggle; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var Toggle = (function () {
+    function Toggle(navCtrl, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+    }
+    Toggle = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'toggle',
+            template: " \n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u5F00\u5173(toggle)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content padding> \n\t\t\n\t\t\t<button ion-button color=\"light\">Light</button>\n\t\t\t<button ion-button>Default</button>\n\t\t\t<button ion-button color=\"secondary\">Secondary</button>\n\t\t\t<button ion-button color=\"danger\">Danger</button>\n\t\t\t<button ion-button color=\"dark\">Dark</button>\n\t\t\t\n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t     \u57FA\u672C\u4F7F\u7528\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t\t\t  <ion-list> \n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>Pepperoni</ion-label>\n\t\t\t\t\t\t    <ion-toggle [(ngModel)]=\"pepperoni\"></ion-toggle>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>Sausage</ion-label>\n\t\t\t\t\t\t    <ion-toggle [(ngModel)]=\"sausage\" disabled=\"true\"></ion-toggle>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>Mushrooms</ion-label>\n\t\t\t\t\t\t    <ion-toggle [(ngModel)]=\"mushrooms\"></ion-toggle>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t</ion-list>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#badges\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t</ion-content>\n\t",
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
+    ], Toggle);
+    return Toggle;
+}());
+
+//# sourceMappingURL=toggle.js.map
+
+/***/ }),
+
+/***/ 234:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Toolbar; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(29);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var Toolbar = (function () {
+    function Toolbar(navCtrl, alertCtrl, service) {
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+        this.service = service;
+        this.searchQuery = '';
+        this.initializeItems();
+    }
+    Toolbar.prototype.initializeItems = function () {
+        var _this = this;
+        this.service.getColorList().then(function (args) {
+            _this.items = args;
+        });
+    };
+    Toolbar.prototype.getItems = function (ev) {
+        var _this = this;
+        this.initializeItems();
+        var val = ev.target.value;
+        setTimeout(function () {
+            if (val && val.trim() != '') {
+                _this.items = _this.items.filter(function (item) {
+                    return (item.name.indexOf(val) > -1);
+                });
+            }
+        }, 500);
+    };
+    Toolbar = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'toolbar',
+            template: " \n\t\t<style type=\"text/css\">\n\t\t\t.container {\n\t\t\t\tposition: relative;\n\t\t\t\tmin-height: 450px;\n\t\t\t}\n\t\t\t.container ion-footer{\n\t\t\t\tbottom:0px;\n\t\t\t}\n\t\t</style>\n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u5DE5\u5177\u680F(toolbar)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content padding> \n\t\t\t\n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u57FA\u672C\u4F7F\u7528\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content class=\"container\"> \n\t\t\t  \t\t\t<ion-header>\n\t\t\t\t\t\t  <ion-toolbar>\n\t\t\t\t\t\t    <ion-title>Toolbar</ion-title>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-header>\n\t\t\t\t\t\t<ion-content>\n\t\t\t\t\t\t\t\t <p>\u5185\u5BB9\u533A\u57DF</p> <p>\u5185\u5BB9\u533A\u57DF</p> <p>\u5185\u5BB9\u533A\u57DF</p> <p>\u5185\u5BB9\u533A\u57DF</p> \n\t\t\t\t\t\t\t\t <a class=\"more\" href=\"https://ionicframework.com/docs/components/#toolbar\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t\t\t\t</ion-content>\n\t\t\t\t\t\t<ion-footer>\n\t\t\t\t\t\t  <ion-toolbar>\n\t\t\t\t\t\t    <ion-title>Footer</ion-title>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-footer>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t\t<ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u6539\u53D8\u989C\u8272\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content class=\"container\"> \n\t\t\t  \t\t<ion-header>\n\t\t\t\t\t\t  <ion-toolbar  color=\"primary\">\n\t\t\t\t\t\t    <ion-title>Toolbar</ion-title>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-header>\n\t\t\t\t\t\t<ion-content class=\"container\">\n\t\t\t\t\t\t\t\t <p>\u989C\u8272\u503C:primary,secondary,danger,dark</p>\n\t\t\t\t\t\t\t\t <p>\u989C\u8272\u503C:primary,secondary,danger,dark</p>\n\t\t\t\t\t\t\t\t <p>\u989C\u8272\u503C:primary,secondary,danger,dark</p>\n\t\t\t\t\t\t</ion-content>\n\t\t\t\t\t\t<ion-footer>\n\t\t\t\t\t\t  <ion-toolbar color=\"primary\">\n\t\t\t\t\t\t    <ion-title>Footer</ion-title>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-footer> \n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#toolbar\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t\t<ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u5DE5\u5177\u680F\u4E2D\u7684\u6309\u94AE\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content class=\"container\"> \n\t\t\t  \t\t \t<ion-header>\n\t\t\t\t\t\t  <ion-toolbar>\n\t\t\t\t\t\t    <ion-buttons start>\n\t\t\t\t\t\t      <button ion-button icon-only color=\"royal\">\n\t\t\t\t\t\t        <ion-icon name=\"search\"></ion-icon>\n\t\t\t\t\t\t      </button>\n\t\t\t\t\t\t    </ion-buttons>\n\t\t\t\t\t\t    <ion-title>Send To...</ion-title>\n\t\t\t\t\t\t    <ion-buttons end>\n\t\t\t\t\t\t      <button ion-button icon-only color=\"royal\">\n\t\t\t\t\t\t        <ion-icon name=\"person-add\"></ion-icon>\n\t\t\t\t\t\t      </button>\n\t\t\t\t\t\t    </ion-buttons>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-header>\n\t\t\t\t\t\t<ion-content>\u5185\u5BB9\u533A\u57DF</ion-content>\n\t\t\t\t\t\t<ion-footer>\n\t\t\t\t\t\t  <ion-toolbar>\n\t\t\t\t\t\t    <p>Ash, Misty, Brock</p>\n\t\t\t\t\t\t    <ion-buttons end>\n\t\t\t\t\t\t      <button ion-button icon-right color=\"royal\">\n\t\t\t\t\t\t        Send\n\t\t\t\t\t\t        <ion-icon name=\"send\"></ion-icon>\n\t\t\t\t\t\t      </button>\n\t\t\t\t\t\t    </ion-buttons>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-footer>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#toolbar\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t\t<ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u5DE5\u5177\u680F\u4E2D\u7684\u641C\u7D22\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content class=\"container\"> \n\t\t\t  \t\t \t <ion-header>\n\t\t\t\t\t\t  <ion-toolbar color=\"primary\">\n\t\t\t\t\t\t    <ion-searchbar (input)=\"getItems($event)\"></ion-searchbar>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-header>\n\t\t\t\t\t\t<br><br><br><br>\n\t\t\t\t\t\t  <ion-list>\n\t\t\t\t\t\t    <ion-item *ngFor=\"let item of items\">\n\t\t\t\t\t\t       {{ item.name }}\n\t\t\t\t\t\t    </ion-item>\n\t\t\t\t\t\t  </ion-list>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#toolbar\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t</ion-content>\n\t",
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2__service_system__["a" /* SystemService */]])
+    ], Toolbar);
+    return Toolbar;
+}());
+
+//# sourceMappingURL=toolbar.js.map
+
+/***/ }),
+
+/***/ 235:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(257);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1885,16 +2036,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 254:
+/***/ 257:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_about_about__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contact_contact__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(104);
@@ -1922,18 +2073,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_navigation_main_page__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_popover_popover__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_popover_popover_page__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_radio_radio__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_range_range__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_radio_radio__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_range_range__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_searchbar_searchbar__ = __webpack_require__(228);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_segment_segment__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_select_select__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_slides_slides__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_toast_toast__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_toggle_toggle__ = __webpack_require__(312);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_toolbar_toolbar__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_toast_toast__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_toggle_toggle__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_toolbar_toolbar__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__ionic_native_status_bar__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__ionic_native_splash_screen__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__service_system__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__service_system__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2093,7 +2244,51 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 301:
+/***/ 29:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SystemService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_data__ = __webpack_require__(313);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SystemService = (function () {
+    function SystemService(http) {
+        this.http = http;
+    }
+    SystemService.prototype.getMenuListP = function () {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_2__app_data__["b" /* MenuList */]);
+    };
+    SystemService.prototype.getColorList = function () {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_2__app_data__["a" /* ColorList */]);
+    };
+    SystemService.prototype.getProvinceList = function () {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_2__app_data__["c" /* ProvinceList */]);
+    };
+    SystemService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    ], SystemService);
+    return SystemService;
+}());
+
+//# sourceMappingURL=system.js.map
+
+/***/ }),
+
+/***/ 304:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2137,7 +2332,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 310:
+/***/ 313:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2570,199 +2765,6 @@ var ProvinceList = [{
 
 /***/ }),
 
-/***/ 311:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Toast; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var Toast = (function () {
-    function Toast(navCtrl, alertCtrl, toastCtrl) {
-        this.navCtrl = navCtrl;
-        this.alertCtrl = alertCtrl;
-        this.toastCtrl = toastCtrl;
-    }
-    Toast.prototype.presentToast = function (args) {
-        var toast = this.toastCtrl.create({
-            message: '测试提示信息显示',
-            duration: 3000,
-            position: args || "bottom"
-        });
-        toast.onDidDismiss(function () {
-            console.log('监听关闭方法');
-        });
-        toast.present();
-    };
-    Toast = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'toast',
-            template: " \n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u63D0\u793A\u6846(toast)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content padding> \n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u57FA\u672C\u4F7F\u7528\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t\t\t <button ion-button full (click)=\"presentToast('bottom')\">\u5E95\u90E8\u5F39\u51FA</button>\n\t\t\t\t\t<button ion-button color=\"secondary\" full (click)=\"presentToast('top')\">\u9876\u90E8\u5F39\u51FA</button>\n\t\t\t\t\t<button ion-button color=\"danger\" full (click)=\"presentToast('middle')\">\u4E2D\u95F4\u5F39\u51FA</button>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/api/components/toast/ToastController/\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t</ion-content>\n\t",
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]) === "function" && _c || Object])
-    ], Toast);
-    return Toast;
-    var _a, _b, _c;
-}());
-
-//# sourceMappingURL=toast.js.map
-
-/***/ }),
-
-/***/ 312:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Toggle; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var Toggle = (function () {
-    function Toggle(navCtrl, alertCtrl) {
-        this.navCtrl = navCtrl;
-        this.alertCtrl = alertCtrl;
-    }
-    Toggle = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'toggle',
-            template: " \n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u5F00\u5173(toggle)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content padding> \n\t\t\n\t\t\t<button ion-button color=\"light\">Light</button>\n\t\t\t<button ion-button>Default</button>\n\t\t\t<button ion-button color=\"secondary\">Secondary</button>\n\t\t\t<button ion-button color=\"danger\">Danger</button>\n\t\t\t<button ion-button color=\"dark\">Dark</button>\n\t\t\t\n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t     \u57FA\u672C\u4F7F\u7528\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content> \n\t\t\t\t\t  <ion-list> \n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>Pepperoni</ion-label>\n\t\t\t\t\t\t    <ion-toggle [(ngModel)]=\"pepperoni\"></ion-toggle>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>Sausage</ion-label>\n\t\t\t\t\t\t    <ion-toggle [(ngModel)]=\"sausage\" disabled=\"true\"></ion-toggle>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t  <ion-item>\n\t\t\t\t\t\t    <ion-label>Mushrooms</ion-label>\n\t\t\t\t\t\t    <ion-toggle [(ngModel)]=\"mushrooms\"></ion-toggle>\n\t\t\t\t\t\t  </ion-item>\n\t\t\t\t\t\t\n\t\t\t\t\t\t</ion-list>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#badges\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t</ion-content>\n\t",
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _b || Object])
-    ], Toggle);
-    return Toggle;
-    var _a, _b;
-}());
-
-//# sourceMappingURL=toggle.js.map
-
-/***/ }),
-
-/***/ 313:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Toolbar; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(32);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var Toolbar = (function () {
-    function Toolbar(navCtrl, alertCtrl, service) {
-        this.navCtrl = navCtrl;
-        this.alertCtrl = alertCtrl;
-        this.service = service;
-        this.searchQuery = '';
-        this.initializeItems();
-    }
-    Toolbar.prototype.initializeItems = function () {
-        var _this = this;
-        this.service.getColorList().then(function (args) {
-            _this.items = args;
-        });
-    };
-    Toolbar.prototype.getItems = function (ev) {
-        var _this = this;
-        this.initializeItems();
-        var val = ev.target.value;
-        setTimeout(function () {
-            if (val && val.trim() != '') {
-                _this.items = _this.items.filter(function (item) {
-                    return (item.name.indexOf(val) > -1);
-                });
-            }
-        }, 500);
-    };
-    Toolbar = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'toolbar',
-            template: " \n\t\t<style type=\"text/css\">\n\t\t\t.container {\n\t\t\t\tposition: relative;\n\t\t\t\tmin-height: 450px;\n\t\t\t}\n\t\t\t.container ion-footer{\n\t\t\t\tbottom:0px;\n\t\t\t}\n\t\t</style>\n\t\t<ion-header>\n\t\t\t<ion-navbar>\n\t\t\t\t<ion-title>\u5DE5\u5177\u680F(toolbar)</ion-title>\n\t\t\t</ion-navbar>\n\t\t</ion-header>\n\t\t<ion-content padding> \n\t\t\t\n\t\t\t <ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u57FA\u672C\u4F7F\u7528\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content class=\"container\"> \n\t\t\t  \t\t\t<ion-header>\n\t\t\t\t\t\t  <ion-toolbar>\n\t\t\t\t\t\t    <ion-title>Toolbar</ion-title>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-header>\n\t\t\t\t\t\t<ion-content>\n\t\t\t\t\t\t\t\t <p>\u5185\u5BB9\u533A\u57DF</p> <p>\u5185\u5BB9\u533A\u57DF</p> <p>\u5185\u5BB9\u533A\u57DF</p> <p>\u5185\u5BB9\u533A\u57DF</p> \n\t\t\t\t\t\t\t\t <a class=\"more\" href=\"https://ionicframework.com/docs/components/#toolbar\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t\t\t\t</ion-content>\n\t\t\t\t\t\t<ion-footer>\n\t\t\t\t\t\t  <ion-toolbar>\n\t\t\t\t\t\t    <ion-title>Footer</ion-title>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-footer>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t\t<ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u6539\u53D8\u989C\u8272\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content class=\"container\"> \n\t\t\t  \t\t<ion-header>\n\t\t\t\t\t\t  <ion-toolbar  color=\"primary\">\n\t\t\t\t\t\t    <ion-title>Toolbar</ion-title>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-header>\n\t\t\t\t\t\t<ion-content class=\"container\">\n\t\t\t\t\t\t\t\t <p>\u989C\u8272\u503C:primary,secondary,danger,dark</p>\n\t\t\t\t\t\t\t\t <p>\u989C\u8272\u503C:primary,secondary,danger,dark</p>\n\t\t\t\t\t\t\t\t <p>\u989C\u8272\u503C:primary,secondary,danger,dark</p>\n\t\t\t\t\t\t</ion-content>\n\t\t\t\t\t\t<ion-footer>\n\t\t\t\t\t\t  <ion-toolbar color=\"primary\">\n\t\t\t\t\t\t    <ion-title>Footer</ion-title>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-footer> \n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#toolbar\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t\t<ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u5DE5\u5177\u680F\u4E2D\u7684\u6309\u94AE\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content class=\"container\"> \n\t\t\t  \t\t \t<ion-header>\n\t\t\t\t\t\t  <ion-toolbar>\n\t\t\t\t\t\t    <ion-buttons start>\n\t\t\t\t\t\t      <button ion-button icon-only color=\"royal\">\n\t\t\t\t\t\t        <ion-icon name=\"search\"></ion-icon>\n\t\t\t\t\t\t      </button>\n\t\t\t\t\t\t    </ion-buttons>\n\t\t\t\t\t\t    <ion-title>Send To...</ion-title>\n\t\t\t\t\t\t    <ion-buttons end>\n\t\t\t\t\t\t      <button ion-button icon-only color=\"royal\">\n\t\t\t\t\t\t        <ion-icon name=\"person-add\"></ion-icon>\n\t\t\t\t\t\t      </button>\n\t\t\t\t\t\t    </ion-buttons>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-header>\n\t\t\t\t\t\t<ion-content>\u5185\u5BB9\u533A\u57DF</ion-content>\n\t\t\t\t\t\t<ion-footer>\n\t\t\t\t\t\t  <ion-toolbar>\n\t\t\t\t\t\t    <p>Ash, Misty, Brock</p>\n\t\t\t\t\t\t    <ion-buttons end>\n\t\t\t\t\t\t      <button ion-button icon-right color=\"royal\">\n\t\t\t\t\t\t        Send\n\t\t\t\t\t\t        <ion-icon name=\"send\"></ion-icon>\n\t\t\t\t\t\t      </button>\n\t\t\t\t\t\t    </ion-buttons>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-footer>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#toolbar\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t\t<ion-card>  \n\t\t\t  <ion-card-header>\n\t\t\t      \u5DE5\u5177\u680F\u4E2D\u7684\u641C\u7D22\n\t\t\t  </ion-card-header> \n\t\t\t  <ion-card-content class=\"container\"> \n\t\t\t  \t\t \t <ion-header>\n\t\t\t\t\t\t  <ion-toolbar color=\"primary\">\n\t\t\t\t\t\t    <ion-searchbar (input)=\"getItems($event)\"></ion-searchbar>\n\t\t\t\t\t\t  </ion-toolbar>\n\t\t\t\t\t\t</ion-header>\n\t\t\t\t\t\t<br><br><br><br>\n\t\t\t\t\t\t  <ion-list>\n\t\t\t\t\t\t    <ion-item *ngFor=\"let item of items\">\n\t\t\t\t\t\t       {{ item.name }}\n\t\t\t\t\t\t    </ion-item>\n\t\t\t\t\t\t  </ion-list>\n\t\t\t\t\t  <a class=\"more\" href=\"https://ionicframework.com/docs/components/#toolbar\">\u66F4\u591A\u4FE1\u606F</a>\n\t\t\t </ion-card-content>\n\t\t\t</ion-card>\n\t\t\t\n\t\t</ion-content>\n\t",
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_system__["a" /* SystemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_system__["a" /* SystemService */]) === "function" && _c || Object])
-    ], Toolbar);
-    return Toolbar;
-    var _a, _b, _c;
-}());
-
-//# sourceMappingURL=toolbar.js.map
-
-/***/ }),
-
-/***/ 32:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SystemService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_data__ = __webpack_require__(310);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var SystemService = (function () {
-    function SystemService(http) {
-        this.http = http;
-    }
-    SystemService.prototype.getMenuListP = function () {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_2__app_data__["b" /* MenuList */]);
-    };
-    SystemService.prototype.getColorList = function () {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_2__app_data__["a" /* ColorList */]);
-    };
-    SystemService.prototype.getProvinceList = function () {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_2__app_data__["c" /* ProvinceList */]);
-    };
-    SystemService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
-    ], SystemService);
-    return SystemService;
-}());
-
-//# sourceMappingURL=system.js.map
-
-/***/ }),
-
 /***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2770,7 +2772,7 @@ var SystemService = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Lists; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_system__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2813,5 +2815,5 @@ var Lists = (function () {
 
 /***/ })
 
-},[232]);
+},[235]);
 //# sourceMappingURL=main.js.map
